@@ -16,13 +16,14 @@
                 {{#each items}}
                 <li data-id="{{@index}}"
                     class="{{is_active @index ../index}} {{odd_even @index}}">
-                    {{title}}</li>
+                    <a href="#">{{title}}</a>
+                </li>
                 {{/each}}
             </ul>
         </script>
         <script id="template-controls" type="x-tmpl-mustache">
             {{#actions}}
-                <a id="{{.}}" class="icon">{{.}}</li>
+                <a href="#" id="{{.}}" class="icon">{{.}}</a>
             {{/actions}}
         </script>
     </body>

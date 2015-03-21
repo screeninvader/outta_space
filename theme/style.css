@@ -13,6 +13,10 @@ body {
 #playlist ul li {
     padding: 0.5em;
 }
+#playlist ul li a {
+    text-decoration: none;
+    color: inherit;
+}
 
 
 /* Controls */
@@ -23,6 +27,10 @@ body {
 	background-repeat: no-repeat;
 	background-image: url(icons.svg);
     text-indent: -10000px;
+}
+#controls a.icon {
+   text-decoration: none;
+   color: inherit;
 }
 
 #pause.icon { width: 32px; height: 32px; background-position: -48px 0;}
