@@ -5,7 +5,8 @@ body {
 /* Playlist */
 
 #playlist .odd { background-color: #ddd; }
-#playlist .active { background-color: yellow; }
+#playlist .active,
+#playlist ul li a:hover { background-color: yellow; }
 #playlist ul {
     list-style-type: none;
     padding-left: 0;
