@@ -15,7 +15,6 @@
 
     API.prototype = {
         onReceive: function(callback) {
-            console.log(callback);
             this.callbacks.push(callback);
         },
         onMessage: function(ev) {
@@ -42,6 +41,25 @@
     Handlebars.registerHelper('odd_even', function(index) {
         return index % 2 ? 'odd' : 'even';
     });
+
+    var Controls = function(el) {
+        this.template = Handlebars.compile(
+            document
+                .querySelector('#template-controls')
+                .innerHTML);
+        this.el = el;
+        this.actions = [
+            'previous', 'stop', 'pause', 'next',
+            'volume-medium', 'volume-mute',
+            'volume-increase', 'volume-decrease'];
+    };
+
+    Controls.prototype = {
+        render: function(state) {
+            this.el.innerHTML = this.template({actions: this.actions});
+        }
+    };
+
 
     var Playlist = function(el) {
         this.template = Handlebars.compile(
@@ -72,10 +90,12 @@
     document.addEventListener("DOMContentLoaded", function (ev) {
 
         var api = new API(socket_uri),
-            playlist = new Playlist(document.querySelector('#playlist'));
+            playlist = new Playlist(document.querySelector('#playlist')),
+            controls = new Controls(document.querySelector('#controls'));
 
         api.onReceive(function(state) {
             playlist.render(state);
+            controls.render(state);
         });
     });
 })(window);

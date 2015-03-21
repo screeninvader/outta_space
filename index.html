@@ -8,9 +8,8 @@
         <link rel="stylesheet" href="./theme/style.css">
     </head>
     <body>
-        <div id="playlist">
-
-        </div>
+        <div id="controls"></div>
+        <div id="playlist"></div>
 
         <script id="template-playlist" type="x-tmpl-mustache">
             <ul>
@@ -20,6 +19,11 @@
                     {{title}}</li>
                 {{/each}}
             </ul>
+        </script>
+        <script id="template-controls" type="x-tmpl-mustache">
+            {{#actions}}
+                <a id="{{.}}" class="icon">{{.}}</li>
+            {{/actions}}
         </script>
     </body>
 </html>
