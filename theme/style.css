@@ -10,11 +10,13 @@ body {
     list-style-type: none;
     padding-left: 0;
 }
-#playlist ul li {
-    padding: 0.5em;
-}
+
 #playlist ul li a {
+    display: block;
+    padding: 0.5em;
+
     text-decoration: none;
+    text-overflow: ellipsis;
     color: inherit;
 }
 
