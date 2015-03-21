@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>ScreenInvader test</title>
+        <script src="./handlebars.js"></script>
+        <script src="./screeninvader.js"></script>
+        <style>
+         .template { display: none; }
+         .active { background-color: yellow; }
+        </style>
+    </head>
+    <body>
+        <div id="playlist">
+
+        </div>
+
+      <script id="template-playlist" class="template" type="x-tmpl-mustache">
+          <ul id="playlist">
+              {{#each items}}
+              <li data-id="{{@index}}" class="{{is_active @index ../index}}">{{title}}</li>
+              {{/each}}
+          </ul>
+      </script>
+    </body>
+</html>
