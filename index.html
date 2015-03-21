@@ -2,25 +2,24 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>ScreenInvader test</title>
+        <title>ScreenInvader</title>
         <script src="./handlebars.js"></script>
         <script src="./screeninvader.js"></script>
-        <style>
-         .template { display: none; }
-         .active { background-color: yellow; }
-        </style>
+        <link rel="stylesheet" href="./theme/style.css">
     </head>
     <body>
         <div id="playlist">
 
         </div>
 
-      <script id="template-playlist" class="template" type="x-tmpl-mustache">
-          <ul id="playlist">
-              {{#each items}}
-              <li data-id="{{@index}}" class="{{is_active @index ../index}}">{{title}}</li>
-              {{/each}}
-          </ul>
-      </script>
+        <script id="template-playlist" type="x-tmpl-mustache">
+            <ul>
+                {{#each items}}
+                <li data-id="{{@index}}"
+                    class="{{is_active @index ../index}} {{odd_even @index}}">
+                    {{title}}</li>
+                {{/each}}
+            </ul>
+        </script>
     </body>
 </html>

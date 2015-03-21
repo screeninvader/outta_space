@@ -39,6 +39,9 @@
         return current === parseInt(active) ? 'active' : '';
     });
 
+    Handlebars.registerHelper('odd_even', function(index) {
+        return index % 2 ? 'odd' : 'even';
+    });
 
     var Playlist = function(el) {
         this.template = Handlebars.compile(
