@@ -33,6 +33,7 @@
     };
 
     // # UI
+    // Please treat "state" as read-only/immutable.
 
     Handlebars.registerHelper('is_active', function(current, active) {
         return current === parseInt(active) ? 'active' : '';
@@ -42,12 +43,15 @@
         return index % 2 ? 'odd' : 'even';
     });
 
-    var Controls = function(el) {
-        this.template = Handlebars.compile(
-            document
-                .querySelector('#template-controls')
-                .innerHTML);
-        this.el = el;
+    var load_template = function(selector) {
+        var el = document.querySelector(selector);
+        return Handlebars.compile(el.innerHTML);
+    };
+
+
+    var Controls = function(selector) {
+        this.template = load_template('#template-controls');
+        this.el = document.querySelector(selector);
         this.actions = [
             'previous', 'stop', 'pause', 'next',
             'volume-medium', 'volume-mute',
@@ -61,12 +65,9 @@
     };
 
 
-    var Playlist = function(el) {
-        this.template = Handlebars.compile(
-            document
-                .querySelector('#template-playlist')
-                .innerHTML);
-        this.el = el;
+    var Playlist = function(selector) {
+        this.template = load_template('#template-playlist');
+        this.el = document.querySelector(selector);
         this.el.addEventListener('click', this.item_click_handler);
     };
 
@@ -90,8 +91,8 @@
     document.addEventListener("DOMContentLoaded", function (ev) {
 
         var api = new API(socket_uri),
-            playlist = new Playlist(document.querySelector('#playlist')),
-            controls = new Controls(document.querySelector('#controls'));
+            playlist = new Playlist('#playlist'),
+            controls = new Controls('#controls');
 
         api.onReceive(function(state) {
             playlist.render(state);
