@@ -3,7 +3,8 @@
     "version": "0.0.1",
     "description": "a web frontend for ScreenInvader",
     "dependencies": {
-        "handlebars": "~3.0.0"
+        "handlebars": "~3.0.0",
+        "underscore": "~1.8.2"
     },
     "devDependencies": {
         "browserify": "~9.0.3",
