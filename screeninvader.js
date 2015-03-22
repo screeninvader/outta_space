@@ -18,10 +18,11 @@
             this.callbacks.push(callback);
         },
         onMessage: function(ev) {
-            var state = JSON.parse(ev.data);
-            console.debug('received state update', state);
+            var self = this;
+            self.state = JSON.parse(ev.data);
+            console.debug('received state update', self.state);
             this.callbacks.forEach(function(callback) {
-                callback.call(this, state);
+                callback.call(self, self.state);
             });
         },
         onError: function(ev) {
