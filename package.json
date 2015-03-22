@@ -10,7 +10,7 @@
         "watchify": "~2.5.0"
     },
     "scripts": {
-        "preinstall": "browserify src/main.js -o bundle.js",
+        "postinstall": "browserify src/main.js -o bundle.js",
         "start": "watchify src/main.js -o bundle.js"
     },
     "repository": {
