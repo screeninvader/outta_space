@@ -40,7 +40,5 @@ body {
 #stop.icon { width: 32px; height: 32px; background-position: -96px 0;}
 #previous.icon { width: 32px; height: 32px; background-position: -144px 0;}
 #next.icon { width: 32px; height: 32px; background-position: -192px 0;}
-#volume-medium.icon { width: 32px; height: 32px; background-position: -240px 0;}
-#volume-mute.icon { width: 32px; height: 32px; background-position: -288px 0;}
 #volume-increase.icon { width: 32px; height: 32px; background-position: -336px 0;}
 #volume-decrease.icon { width: 32px; height: 32px; background-position: -384px 0;}

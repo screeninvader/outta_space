@@ -54,7 +54,6 @@
         this.el = document.querySelector(selector);
         this.actions = [
             'previous', 'stop', 'pause', 'next',
-            'volume-medium', 'volume-mute',
             'volume-increase', 'volume-decrease'];
     };
 
