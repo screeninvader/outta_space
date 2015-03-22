@@ -11,6 +11,11 @@
         return index % 2 ? 'odd' : 'even';
     });
 
+    Handlebars.registerHelper('in_minutes', function(seconds) {
+        return Math.floor(seconds / 60) + ":" + (seconds % 60);
+    });
+
+
     module.exports = {
         fetchJSON: function(url, parameters, success) {
             var request = new XMLHttpRequest();

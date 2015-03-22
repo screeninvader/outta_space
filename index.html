@@ -32,11 +32,17 @@
             </ul>
         </script>
         <script id="template-search-results" type="x-tmpl-mustache">
-            {{#each feed.entry}}
-            <li>{{title.$t}}</li>
+            {{#feed}}
+            {{#each entry}}
+            <li data-link="{{media$group.media$player.0.url}}">
+                <a href="#">{{title.$t}}
+                    ({{in_minutes media$group.yt$duration.seconds}})
+                </a>
+            </li>
             {{else}}
             <li>No results</li>
             {{/each}}
+            {{/feed}}
         </script>
     </body>
 </html>
