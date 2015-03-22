@@ -7,8 +7,9 @@
         <link rel="stylesheet" href="./theme/style.css">
     </head>
     <body>
-        <div id="controls"></div>
-        <div id="playlist"></div>
+      <div id="controls"></div>
+      <div id="search"></div>
+      <div id="playlist"></div>
 
         <script id="template-playlist" type="x-tmpl-mustache">
             <ul>
@@ -24,6 +25,18 @@
             {{#actions}}
                 <a href="#" id="{{.}}" class="icon">{{.}}</a>
             {{/actions}}
+        </script>
+        <script id="template-search" type="x-tmpl-mustache">
+            <input type="text" placeholder="Search YouTube">
+            <ul class="results">
+            </ul>
+        </script>
+        <script id="template-search-results" type="x-tmpl-mustache">
+            {{#each feed.entry}}
+            <li>{{title.$t}}</li>
+            {{else}}
+            <li>No results</li>
+            {{/each}}
         </script>
     </body>
 </html>
