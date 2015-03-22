@@ -1,0 +1,22 @@
+{
+    "name": "outta_space",
+    "version": "0.0.1",
+    "description": "a web frontend for ScreenInvader",
+    "dependencies": {
+        "handlebars": "~3.0.0"
+    },
+    "devDependencies": {
+        "browserify": "~9.0.3",
+        "watchify": "~2.5.0"
+    },
+    "scripts": {
+        "preinstall": "browserify src/main.js -o bundle.js",
+        "start": "watchify src/main.js -o bundle.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/screeninvader/outta_space.git"
+    },
+    "homepage": "https://github.com/screeninvader/outta_space",
+    "license": "AGPL"
+}
