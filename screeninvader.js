@@ -31,7 +31,48 @@
         onOpen: function(ev) {
             this.socket.send('setup');
         },
+        command: function() {
+            this.socket.send(
+                JSON.stringify(
+                    Array.prototype.slice.call(
+                        arguments)));
+        },
+        set: function (key, value) {
+            console.debug('setting', key, 'to', value);
+            this.command('trigger', key, value);
+        },
+        jump: function (index) {
+            this.set('/playlist/index', index);
+        },
+        previous: function () {
+            if (parseInt(this.state.playlist.index) - 1 >= 0) {
+                this.jump(parseInt(this.state.playlist.index) - 1);
+            }
+        },
+        next: function () {
+            if (parseInt(this.state.playlist.index) + 1 <= this.state.playlist.items.length) {
+                this.jump(parseInt(this.state.playlist.index) + 1);
+            }
+        },
+        play: function () {
+            this.set('/player/active', 'true');
+        },
+        pause: function () {
+            this.set('/player/active', 'false');
+        },
+        'volume-increase': function () {
+            if (this.state.sound.volume <= 90) {
+                this.set('/sound/volume', parseInt(this.state.sound.volume) + 10);
+            }
+        },
+        'volume-decrease': function () {
+            if (this.state.sound.volume >= 10) {
+                this.set('/sound/volume', parseInt(this.state.sound.volume) - 10);
+            }
+        },
+
     };
+    var api = window.api = new API(socket_uri);
 
     // # UI
     // Please treat "state" as read-only/immutable.
@@ -51,23 +92,30 @@
 
 
     var Controls = function(selector) {
-        this.template = load_template('#template-controls');
         this.el = document.querySelector(selector);
+        this.template = load_template('#template-controls');
         this.actions = [
-            'previous', 'stop', 'pause', 'next',
+            'previous', 'play', 'pause', 'next',
             'volume-increase', 'volume-decrease'];
+        this.el.addEventListener('click', this.item_click_handler);
     };
 
     Controls.prototype = {
         render: function(state) {
             this.el.innerHTML = this.template({actions: this.actions});
+        },
+        item_click_handler: function(ev) {
+            // only handle clicks on children, not on this.el itself.
+            if (ev.target === ev.currentTarget)
+                return;
+            api[ev.target.id]();
+
         }
     };
 
-
     var Playlist = function(selector) {
-        this.template = load_template('#template-playlist');
         this.el = document.querySelector(selector);
+        this.template = load_template('#template-playlist');
         this.el.addEventListener('click', this.item_click_handler);
     };
 
@@ -76,10 +124,8 @@
             this.el.innerHTML = this.template(state.playlist);
         },
         item_click_handler: function(ev) {
-            // only handle clicks on children, not on this.el itself.
-            if (ev.target === ev.currentTarget)
-                return;
-            console.log(ev.target.innerHTML);
+            // ev.target is the <a> element, parentNode the <li> element.
+            api.jump(ev.target.parentNode.getAttribute('data-id'));
         }
     };
 
@@ -89,9 +135,7 @@
     // including our mustache templates aren't necessarily loaded
     // on document.load().
     document.addEventListener("DOMContentLoaded", function (ev) {
-
-        var api = new API(socket_uri),
-            playlist = new Playlist('#playlist'),
+        var playlist = new Playlist('#playlist'),
             controls = new Controls('#controls');
 
         api.onReceive(function(state) {

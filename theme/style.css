@@ -36,6 +36,8 @@ body {
    color: inherit;
 }
 
+
+#play.icon { width: 32px; height: 32px; background-position: 0 0;}
 #pause.icon { width: 32px; height: 32px; background-position: -48px 0;}
 #stop.icon { width: 32px; height: 32px; background-position: -96px 0;}
 #previous.icon { width: 32px; height: 32px; background-position: -144px 0;}
