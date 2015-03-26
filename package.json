@@ -9,11 +9,12 @@
     },
     "devDependencies": {
         "browserify": "~9.0.3",
+        "babelify": "~5.0.4",
         "watchify": "~2.5.0"
     },
     "scripts": {
-        "postinstall": "browserify src/main.js -o bundle.js",
-        "start": "watchify src/main.js -o bundle.js"
+        "postinstall": "browserify src/main.js -t babelify -o bundle.js",
+        "start": "watchify src/main.js -t babelify -o bundle.js"
     },
     "repository": {
         "type": "git",

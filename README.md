@@ -4,7 +4,7 @@
 [ScreenInvader](http://github.com/screeninvader/screeninvader) based
 on [Janosh](https://github.com/kallaballa/Janosh) new WebSocket-API.
 
-Project goals are to stay close to vanilla JavaScript with as little external
+Project goals are to stay close to ECMAScript 6  with as little runtime
 dependencies as possible, keeping the codebase read- and
 hackable, and to provide a responsive and themeable userinterface.
 

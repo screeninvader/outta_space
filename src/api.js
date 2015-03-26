@@ -1,4 +1,5 @@
-var API = require('screninvader.js');
-var config = require('./config');
+import API from 'screeninvader.js';
+import config from './config';
 
-module.exports = new API(config.socket_uri);
+var api = new API(config.socketUri);
+export default api;
