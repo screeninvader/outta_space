@@ -1,5 +1,4 @@
 import Handlebars from 'handlebars';
-import 'querystring';
 
 Handlebars.registerHelper('is_active', function(current, active) {
     return current === parseInt(active) ? 'active' : '';
@@ -12,6 +11,7 @@ Handlebars.registerHelper('odd_even', function(index) {
 Handlebars.registerHelper('in_minutes', function(seconds) {
     return Math.floor(seconds / 60) + ':' + (seconds % 60);
 });
+import querystring from 'querystring';
 
 var fetchJSON = function(url, parameters, success) {
         var request = new XMLHttpRequest();

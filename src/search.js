@@ -1,6 +1,6 @@
 import _ from 'underscore';
-import {loadTemplate} from './utils';
-import './api';
+import {loadTemplate, fetchJSON} from './utils';
+import api from './api';
 
 var Search = function(selector) {
     this.template = loadTemplate('#template-search');
@@ -21,7 +21,7 @@ Search.prototype = {
         el.innerHTML = this.resultsTemplate(json);
     },
     youtube: function(term, success) {
-        utils.fetchJSON(
+        fetchJSON(
             'http://gdata.youtube.com/feeds/api/videos', {
                 'type': 'video',
                 'max-results': 5,

@@ -1,5 +1,5 @@
 import {loadTemplate} from './utils';
-import './api';
+import api from './api';
 
 var Controls = function(selector) {
     this.el = document.querySelector(selector);
