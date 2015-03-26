@@ -6,7 +6,7 @@ import Search from './search';
 // we seem to need DOMContentLoaded here, because script tags,
 // including our mustache templates aren't necessarily loaded
 // on document.load().
-document.addEventListener("DOMContentLoaded", ev => {
+document.addEventListener('DOMContentLoaded', ev => {
     var playlist = new Playlist('#playlist'),
         controls = new Controls('#controls'),
         search = new Search('#search');
