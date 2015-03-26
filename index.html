@@ -7,43 +7,39 @@
         <link rel="stylesheet" href="./theme/style.css">
     </head>
     <body>
-      <div id="controls"></div>
-      <div id="search"></div>
-      <div id="playlist"></div>
+        <div id="controls"></div>
+        <div id="search"></div>
+        <div id="playlist"></div>
 
-      <script type(
-        <script id="template-playlist" type="x-tmpl-mustache">
-            <ul>
-                {{#each items}}
-                <li data-id="{{@index}}"
-                    class="{{is_active @index ../index}} {{odd_even @index}}">
-                    <a href="#">{{title}}</a>
-                </li>
-                {{/each}}
-            </ul>
+        <script id="template-playlist" type="x-tmpl-underscore">
+         <ul>
+             <% _.each(items, function(item, current) { %>
+                 <li data-id="<%= current %>"
+                     class="<%= isActive(current, index) %>
+                            <%= oddEven(current) %>">
+                     <a href="#"><%= item.title %></a>
+                 </li>
+             <% }); %>
+         </ul>
         </script>
-        <script id="template-controls" type="x-tmpl-mustache">
-            {{#actions}}
-                <a href="#" id="{{.}}" class="icon">{{.}}</a>
-            {{/actions}}
+        <script id="template-controls" type="x-tmpl-underscore">
+         <% _.each(actions, function(action) { %>
+             <a href="#" id="<%= action %>" class="icon">"<%= action %></a>
+         <% }); %>
         </script>
-        <script id="template-search" type="x-tmpl-mustache">
-            <input type="text" placeholder="Search YouTube">
-            <ul class="results">
-            </ul>
+        <script id="template-search" type="x-tmpl-underscore">
+         <input type="text" placeholder="Search YouTube">
+         <ul class="results">
+         </ul>
         </script>
-        <script id="template-search-results" type="x-tmpl-mustache">
-            {{#feed}}
-            {{#each entry}}
-            <li data-link="{{media$group.media$player.0.url}}">
-                <a href="#">{{title.$t}}
-                    ({{in_minutes media$group.yt$duration.seconds}})
-                </a>
-            </li>
-            {{else}}
-            <li>No results</li>
-            {{/each}}
-            {{/feed}}
+        <script id="template-search-results" type="x-tmpl-underscore">
+             <% _.each(feed.entry, function(entry) { %>
+                 <li data-link="<%= entry.media$group.media$player[0].url %>">
+                     <a href="#"><%= entry.title.$t %>
+                         (<%= inMinutes(entry.media$group.yt$duration.seconds) %>)
+                     </a>
+                 </li>
+             <% }); %>
         </script>
     </body>
 </html>

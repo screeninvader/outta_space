@@ -1,16 +1,4 @@
-import Handlebars from 'handlebars';
-
-Handlebars.registerHelper('is_active', function(current, active) {
-    return current === parseInt(active) ? 'active' : '';
-});
-
-Handlebars.registerHelper('odd_even', function(index) {
-    return index % 2 ? 'odd' : 'even';
-});
-
-Handlebars.registerHelper('in_minutes', function(seconds) {
-    return Math.floor(seconds / 60) + ':' + (seconds % 60);
-});
+import _ from 'underscore';
 import querystring from 'querystring';
 
 var fetchJSON = function(url, parameters, success) {
@@ -22,9 +10,23 @@ var fetchJSON = function(url, parameters, success) {
         request.send();
 };
 
+var helpers = {
+    isActive: function(current, active) {
+        return current === parseInt(active) ? 'active' : '';
+    },
+    oddEven: function(index) {
+        return index % 2 ? 'odd' : 'even';
+    },
+    inMinutes: function(seconds) {
+        return Math.floor(seconds / 60) + ':' + (seconds % 60);
+    }
+};
+
 var loadTemplate = function(selector) {
     var el = document.querySelector(selector);
-    return Handlebars.compile(el.innerHTML);
+    return function(context) {
+        return _.template(el.innerHTML)(_.extend(context, helpers));
+    };
 };
 
 export { fetchJSON, loadTemplate };

@@ -4,7 +4,6 @@
     "description": "a web frontend for ScreenInvader",
     "dependencies": {
         "screeninvader.js": "screeninvader/screeninvader.js",
-        "handlebars": "~3.0.0",
         "underscore": "~1.8.2"
     },
     "devDependencies": {

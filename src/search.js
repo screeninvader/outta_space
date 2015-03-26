@@ -33,7 +33,6 @@ Search.prototype = {
     changeHandler: function(ev) {
         var self = this;
         this.youtube(ev.target.value, function(json) {
-            console.debug(json);
             self.renderResults(json);
         });
     },
