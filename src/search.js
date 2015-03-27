@@ -17,11 +17,15 @@ var Search = function(selector) {
 Search.prototype = {
     render: function() {
         this.el.innerHTML = this.template();
+        this.results = this.el.querySelector('.results');
     },
     renderResults: function(json) {
-        var el = this.el.querySelector('.results');
-        el.innerHTML = this.resultsTemplate(json);
+        this.results.innerHTML = this.resultsTemplate(json);
     },
+    emptyResults: function() {
+        this.results.innerHTML = '';
+    },
+
     youtube: function(term, success) {
         fetchJSON(
             'http://gdata.youtube.com/feeds/api/videos', {
@@ -32,11 +36,18 @@ Search.prototype = {
             },
             success);
     },
-    changeHandler: function(ev) {
+    changeHandler: _.throttle(function(ev) {
         var self = this;
-        this.youtube(ev.target.value, function(json) {
-            self.renderResults(json);
-        });
+        if (ev.target.value !== '') {
+            this.youtube(ev.target.value, function(json) {
+                self.renderResults(json);
+            });
+        } else {
+            this.emptyResults();
+        }
+    }, 500),
+    focusHandler: function(ev) {
+        this.emptyResults();
     },
     clickHandler: function(ev) {
         if (ev.target.parentNode.tagName !== 'LI')
