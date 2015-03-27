@@ -1,15 +1,17 @@
 import _ from 'underscore';
-import {loadTemplate, fetchJSON} from './utils';
+import {loadTemplate, fetchJSON, bindEvents} from './utils';
 import api from './api';
 
 var Search = function(selector) {
     this.template = loadTemplate('#template-search');
     this.resultsTemplate = loadTemplate('#template-search-results');
     this.el = document.querySelector(selector);
-    this.el.addEventListener(
-        'input',
-        _.throttle(this.changeHandler.bind(this), 500));
-    this.el.addEventListener('click', this.clickHandler.bind(this));
+
+    bindEvents(this, {
+        'input': this.changeHandler,
+        'blur': this.focusHandler,
+        'click': this.clickHandler
+    });
 };
 
 Search.prototype = {

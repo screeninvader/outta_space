@@ -1,4 +1,4 @@
-import {loadTemplate} from './utils';
+import {loadTemplate, bindEvent} from './utils';
 import api from './api';
 
 var Controls = function(selector) {
@@ -7,14 +7,14 @@ var Controls = function(selector) {
     this.actions = [
         'previous', 'play', 'pause', 'next',
         'volume-increase', 'volume-decrease'];
-    this.el.addEventListener('click', this.itemClickHandler);
+    bindEvent(this, 'click', this.clickHandler);
 };
 
 Controls.prototype = {
     render: function(state) {
         this.el.innerHTML = this.template({actions: this.actions});
     },
-    itemClickHandler: function(ev) {
+    clickHandler: function(ev) {
         // only handle clicks on children, not on this.el itself.
         if (ev.target === ev.currentTarget)
             return;

@@ -1,17 +1,17 @@
-import {loadTemplate} from './utils';
+import {loadTemplate, bindEvent} from './utils';
 import api from './api';
 
 var Playlist = function(selector) {
     this.el = document.querySelector(selector);
     this.template = loadTemplate('#template-playlist');
-    this.el.addEventListener('click', this.itemClickHandler);
+    bindEvent(this, 'click', this.clickHandler);
 };
 
 Playlist.prototype = {
     render: function(state) {
         this.el.innerHTML = this.template(state.playlist);
     },
-    itemClickHandler: function(ev) {
+    clickHandler: function(ev) {
         // ev.target is the <a> element, parentNode the <li> element.
         api.jump(ev.target.parentNode.getAttribute('data-id'));
     }

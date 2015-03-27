@@ -29,4 +29,14 @@ var loadTemplate = function(selector) {
     };
 };
 
-export { fetchJSON, loadTemplate };
+var bindEvent = function(self, event, handler) {
+    return self.el.addEventListener(event, handler.bind(self), true);
+};
+
+var bindEvents = function(self, data) {
+    return _.map(data, function(handler, event) {
+        return bindEvent(self, event, handler);
+    });
+};
+
+export { fetchJSON, loadTemplate, bindEvent, bindEvents };
