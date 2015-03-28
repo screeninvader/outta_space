@@ -2,13 +2,33 @@ import _ from 'underscore';
 import {loadTemplate, fetchJSON, bindEvents} from './utils';
 import api from './api';
 
+var searchProviders = {
+    youtube: function(term) {
+        return fetchJSON('http://gdata.youtube.com/feeds/api/videos', {
+            'type': 'video',
+            'max-results': 5,
+            'alt': 'json',
+            'q': term
+        }).then((json) => {
+            return _.map(json.feed.entry, (entry) => {
+                return {
+                    title: entry.title.$t,
+                    url: entry.media$group.media$player[0].url,
+                    duration: entry.media$group.yt$duration.seconds
+                };
+            });
+        });
+    }
+};
+
+
 class Search {
     constructor (selector) {
         this.template = loadTemplate('#template-search');
         this.resultsTemplate = loadTemplate('#template-search-results');
         this.el = document.querySelector(selector);
         bindEvents(this, {
-            'input': _.throttle(this.changeHandler, 500),
+            'input': _.throttle(this.changeHandler, 300),
             'blur': this.focusHandler,
             'click': this.clickHandler
         });
@@ -23,22 +43,10 @@ class Search {
     emptyResults() {
         this.results.innerHTML = '';
     }
-    youtube(term, success) {
-        fetchJSON(
-            'http://gdata.youtube.com/feeds/api/videos', {
-                'type': 'video',
-                'max-results': 5,
-                'alt': 'json',
-                'q': term
-            },
-            success);
-    }
     changeHandler(ev) {
-        var self = this;
         if (ev.target.value !== '') {
-            this.youtube(ev.target.value, function(json) {
-                self.renderResults(json);
-            });
+            searchProviders.youtube(ev.target.value)
+                .then((items) => { this.renderResults({items}); });
         } else {
             this.emptyResults();
         }

@@ -33,10 +33,10 @@
          </ul>
         </script>
         <script id="template-search-results" type="x-tmpl-underscore">
-             <% _.each(feed.entry, function(entry) { %>
-                 <li data-link="<%= entry.media$group.media$player[0].url %>">
-                     <a href="#"><%= entry.title.$t %>
-                         (<%= inMinutes(entry.media$group.yt$duration.seconds) %>)
+             <% _.each(items, function(item) { %>
+                 <li data-link="<%= item.url %>">
+                     <a href="#"><%= item.title %>
+                         (<%= inMinutes(item.duration) %>)
                      </a>
                  </li>
              <% }); %>
