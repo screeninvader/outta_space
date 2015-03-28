@@ -1,14 +1,17 @@
 import _ from 'underscore';
 import querystring from 'querystring';
 
-var fetchJSON = function(url, parameters, success) {
+function fetchJSON(url, parameters) {
+    return new Promise((resolve, reject) => {
         var request = new XMLHttpRequest();
         url += '?' + querystring.stringify(parameters);
-        request.onload = function() { success(this.response); };
+        request.onload = function() { resolve(this.response); };
+        request.onerror = function(e) { reject(e); };
         request.open('get', url, true);
         request.responseType = 'json';
         request.send();
-};
+    });
+}
 
 var helpers = {
     isActive: function(current, active) {
