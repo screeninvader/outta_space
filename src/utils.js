@@ -14,32 +14,32 @@ function fetchJSON(url, parameters) {
 }
 
 var helpers = {
-    isActive: function(current, active) {
+    isActive(current, active) {
         return current === parseInt(active) ? 'active' : '';
     },
-    oddEven: function(index) {
+    oddEven(index) {
         return index % 2 ? 'odd' : 'even';
     },
-    inMinutes: function(seconds) {
+    inMinutes(seconds) {
         return Math.floor(seconds / 60) + ':' + (seconds % 60);
     }
 };
 
-var loadTemplate = function(selector) {
+function loadTemplate(selector) {
     var el = document.querySelector(selector);
     return function(context) {
         return _.template(el.innerHTML)(_.extend(context, helpers));
     };
-};
+}
 
-var bindEvent = function(self, event, handler) {
+function bindEvent(self, event, handler) {
     return self.el.addEventListener(event, handler.bind(self), true);
-};
+}
 
-var bindEvents = function(self, data) {
+function bindEvents(self, data) {
     return _.map(data, function(handler, event) {
         return bindEvent(self, event, handler);
     });
-};
+}
 
 export { fetchJSON, loadTemplate, bindEvent, bindEvents };
