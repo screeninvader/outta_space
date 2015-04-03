@@ -7,9 +7,10 @@
         <link rel="stylesheet" href="./theme/style.css">
     </head>
     <body>
-        <div id="controls"></div>
-        <div id="post-url"></div>
-        <div id="search"></div>
+        <header>
+            <div id="controls"></div>
+            <div id="search"></div>
+        </header>
         <div id="playlist"></div>
 
         <script id="template-playlist" type="x-tmpl-underscore">
@@ -42,12 +43,6 @@
                      </a>
                  </li>
              <% }); %>
-        </script>
-        <script id="template-post-url" type="x-tmpl-underscore">
-         <form>
-             <input type="text" placeholder="Post an URL">
-             <input type="submit" value="post">
-         </form>
         </script>
     </body>
 </html>
