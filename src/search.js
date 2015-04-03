@@ -1,6 +1,7 @@
 import _ from 'underscore';
-import {loadTemplate, fetchJSON, bindEvents} from './utils';
+import {loadTemplate, fetchJSON, bindEvent, bindEvents} from './utils';
 import config from './config';
+import api from './api';
 
 var searchProviders = {
     youtube: (term) => {
@@ -46,18 +47,19 @@ class Search {
     render() {
         this.el.innerHTML = this.template();
         this.results = this.el.querySelector('.results');
-        bindEvents(this, {
-            'input': changeHandler,
-            'focus': changeHandler,
-            'blur': this.focusHandler,
-            'click': this.clickHandler
+
+        bindEvents(this, 'input', {
+            'input': this.changeHandler,
+            'focus': this.changeHandler,
+            'blur': this.blurHandler,
         });
     }
     renderResults(json) {
         this.results.innerHTML = this.resultsTemplate(json);
+        bindEvent(this, '.results a', 'click', this.clickHandler);
     }
     emptyResults() {
-        this.results.innerHTML = '';
+        setTimeout(() => this.results.innerHTML = '', 300);
     }
     changeHandler(ev) {
         if (ev.target.value !== '') {
@@ -67,14 +69,12 @@ class Search {
             this.emptyResults();
         }
     }
-    focusHandler(ev) {
+    blurHandler(ev) {
         this.emptyResults();
     }
     clickHandler(ev) {
-        if (ev.target.parentNode.tagName !== 'LI')
-            return;
-        var link = ev.target.parentNode.getAttribute('data-link');
-
+        // ev.target is the <a> element, parentNode the <li> element.
+        api.showUrl(ev.target.parentNode.getAttribute('data-link'));
     }
 }
 
