@@ -63,7 +63,7 @@ class Search {
     }
     changeHandler(ev) {
         if (ev.target.value !== '') {
-            searchProviders.soundcloud(ev.target.value)
+            searchProviders.youtube(ev.target.value)
                 .then((items) => { this.renderResults({items}); });
         } else {
             this.emptyResults();
