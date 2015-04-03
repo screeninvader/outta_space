@@ -8,6 +8,7 @@
     </head>
     <body>
         <div id="controls"></div>
+        <div id="post-url"></div>
         <div id="search"></div>
         <div id="playlist"></div>
 
@@ -41,6 +42,12 @@
                      </a>
                  </li>
              <% }); %>
+        </script>
+        <script id="template-post-url" type="x-tmpl-underscore">
+         <form>
+             <input type="text" placeholder="Post an URL">
+             <input type="submit" value="post">
+         </form>
         </script>
     </body>
 </html>

@@ -2,6 +2,7 @@ import api from './api';
 import Playlist from './playlist';
 import Controls from './controls';
 import Search from './search';
+import PostUrl from './post-url';
 
 // we seem to need DOMContentLoaded here, because script tags,
 // including our mustache templates aren't necessarily loaded
@@ -9,14 +10,17 @@ import Search from './search';
 document.addEventListener('DOMContentLoaded', ev => {
     var playlist = new Playlist('#playlist'),
         controls = new Controls('#controls'),
-        search = new Search('#search');
+        search = new Search('#search'),
+        posturl = new PostUrl('#post-url');
 
     // search.render is called here once for the initial search box and
     // gets updated if it's own change handler is triggered, because it
     // works completely independent from state updates.
     search.render();
+    posturl.render();
 
     api.onReceive(state => {
+        console.debug('Rerendering...');
         playlist.render(state);
         controls.render(state);
 
