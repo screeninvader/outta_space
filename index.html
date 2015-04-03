@@ -31,7 +31,11 @@
         <input id="volume" type="range" min="0" max="100" value="<%= volume %>" />
         </script>
         <script id="template-search" type="x-tmpl-underscore">
-         <input type="text" placeholder="Search YouTube">
+          <form>
+            <input id="search-url" type="text"
+                   placeholder="Post something!">
+            <input id="search-submit" type="submit" value="Go!" disabled>
+          </form>
          <ul class="results">
          </ul>
         </script>

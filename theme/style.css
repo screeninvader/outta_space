@@ -1,5 +1,14 @@
+html, body {
+    margin: 0;
+}
+
 body {
     font-family: sans-serif;
+}
+
+#controls {
+    float: left;
+    margin-right: 2em;
 }
 
 /* Playlist */
@@ -26,7 +35,6 @@ body {
 
 #controls .icon {
 	display: inline-block;
-    padding: 0.2em;
 	background-repeat: no-repeat;
 	background-image: url(icons.svg);
     text-indent: -10000px;

@@ -58,10 +58,12 @@ class Search {
     }
     render() {
         this.el.innerHTML = this.template();
-        this.input = this.el.querySelector('input');
+        this.input = this.el.querySelector('input#search-url');
         this.results = this.el.querySelector('.results');
+        this.submit = this.el.querySelector('input#search-submit');
 
-        bindEvents(this, 'input', {
+        bindEvent(this, '#search form', 'submit', this.submitHandler);
+        bindEvents(this, 'input#search-url', {
             'input': this.changeHandler,
             'focus': this.changeHandler,
             'blur': this.blurHandler,
@@ -83,9 +85,10 @@ class Search {
     }
     changeHandler(ev) {
         let term = ev.target.value;
+        this.submit.disabled = true;
         if (term.length > 0) {
             if (term.startsWith('http')) {
-                api.showUrl(query);
+                this.submit.disabled = false;
             } else {
                 this.doSearch(term);
             }
@@ -93,9 +96,17 @@ class Search {
             this.renderProviders(searchProviders);
         }
     }
+    submitHandler(ev) {
+        ev.preventDefault();
+        if (this.input.value.startsWith('http')) {
+            api.showUrl(this.input.value);
+        }
+    }
     blurHandler(ev) {
-        this.input.value = '';
-        setTimeout(() => this.emptyResults(), 300);
+        setTimeout(() => {
+            this.input.value = '';
+            this.emptyResults()
+        }, 300);
     }
     clickHandler(ev) {
         // ev.target is the <a> element, parentNode the <li> element.
