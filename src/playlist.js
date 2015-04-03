@@ -12,7 +12,7 @@ class Playlist {
     }
     clickHandler(ev) {
         // ev.target is the <a> element, parentNode the <li> element.
-        api.jump(ev.target.parentNode.getAttribute('data-id'));
+        api.player.jump(ev.target.parentNode.getAttribute('data-id'));
     }
 }
 
