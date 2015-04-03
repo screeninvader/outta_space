@@ -7,8 +7,8 @@ class Playlist {
         this.template = loadTemplate('#template-playlist');
     }
     render(state) {
-        bindEvent(this, 'click', this.clickHandler);
         this.el.innerHTML = this.template(state.playlist);
+        bindEvent(this, 'a', 'click', this.clickHandler);
     }
     clickHandler(ev) {
         // ev.target is the <a> element, parentNode the <li> element.

@@ -10,12 +10,9 @@ class Controls {
     }
     render(state) {
         this.el.innerHTML = this.template({actions: this.actions});
-        bindEvent(this, 'click', this.clickHandler);
+        bindEvent(this, 'a.action', 'click', this.clickHandler);
     }
     clickHandler (ev) {
-        // only handle clicks on children, not on this.el itself.
-        if (ev.target === ev.currentTarget)
-            return;
         api.player[ev.target.id]();
     }
 }

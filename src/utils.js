@@ -32,14 +32,14 @@ function loadTemplate(selector) {
     };
 }
 
-function bindEvent(self, event, handler) {
-    return self.el.addEventListener(event, handler.bind(self), true);
+function bindEvent(self, target, event, handler) {
+    _.each(self.el.querySelectorAll(target), (el) =>
+           el.addEventListener(event, handler.bind(self), true));
 }
 
-function bindEvents(self, data) {
-    return _.map(data, function(handler, event) {
-        return bindEvent(self, event, handler);
-    });
+function bindEvents(self, target, data) {
+    _.each(data, (handler, event) =>
+           bindEvent(self, target, event, handler));
 }
 
 export { fetchJSON, loadTemplate, bindEvent, bindEvents };
