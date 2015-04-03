@@ -9,11 +9,19 @@ class Controls {
             'previous', 'play', 'pause', 'next'];
     }
     render(state) {
-        this.el.innerHTML = this.template({actions: this.actions});
+        this.el.innerHTML = this.template({
+            actions: this.actions,
+            volume: state.sound.volume,
+        });
         bindEvent(this, 'a.action', 'click', this.clickHandler);
+        bindEvent(this, '#volume', 'change', this.volumeHandler);
     }
-    clickHandler (ev) {
+    clickHandler(ev) {
         api.player[ev.target.id]();
+    }
+
+    volumeHandler(ev) {
+        api.setVolume(ev.target.value);
     }
 }
 
