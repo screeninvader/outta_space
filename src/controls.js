@@ -6,11 +6,11 @@ class Controls {
         this.el = document.querySelector(selector);
         this.template = loadTemplate('#template-controls');
         this.actions = [
-        bindEvent(this, 'click', this.clickHandler);
             'previous', 'play', 'pause', 'next'];
     }
     render(state) {
         this.el.innerHTML = this.template({actions: this.actions});
+        bindEvent(this, 'click', this.clickHandler);
     }
     clickHandler (ev) {
         // only handle clicks on children, not on this.el itself.

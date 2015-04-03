@@ -30,7 +30,7 @@ var searchProviders = {
                     url: entry.uri,
                     duration: entry.duration
                 };
-            })
+            });
         });
     }
 };
@@ -38,20 +38,20 @@ var searchProviders = {
 
 class Search {
     constructor (selector) {
-        var changeHandler = _.throttle(this.changeHandler, 300)
+        var changeHandler = _.throttle(this.changeHandler, 300);
         this.template = loadTemplate('#template-search');
         this.resultsTemplate = loadTemplate('#template-search-results');
         this.el = document.querySelector(selector);
+    }
+    render() {
+        this.el.innerHTML = this.template();
+        this.results = this.el.querySelector('.results');
         bindEvents(this, {
             'input': changeHandler,
             'focus': changeHandler,
             'blur': this.focusHandler,
             'click': this.clickHandler
         });
-    }
-    render() {
-        this.el.innerHTML = this.template();
-        this.results = this.el.querySelector('.results');
     }
     renderResults(json) {
         this.results.innerHTML = this.resultsTemplate(json);
