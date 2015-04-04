@@ -87,7 +87,7 @@ class Search {
         let term = ev.target.value;
         this.submit.disabled = true;
         if (term.length > 0) {
-            if (term.startsWith('http')) {
+            if ( term.indexOf('://') > -1 || term.indexOf('//') === 0 ) {
                 this.submit.disabled = false;
             } else {
                 this.doSearch(term);
