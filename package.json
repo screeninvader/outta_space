@@ -12,8 +12,8 @@
         "watchify": "~2.5.0"
     },
     "scripts": {
-        "postinstall": "browserify src/main.js -t babelify -o bundle.js",
-        "start": "watchify src/main.js -t babelify -o bundle.js"
+        "postinstall": "browserify -d src/main.js -t babelify -o bundle.js",
+        "start": "watchify -d  src/main.js -t babelify -o bundle.js"
     },
     "repository": {
         "type": "git",
