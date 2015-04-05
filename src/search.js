@@ -6,41 +6,41 @@ import api from './api';
 
 var searchProviders = {
   youtube: {
-    name: 'YouTube',
-    alias: 'yt',
-    search: (term) => {
+    name: 'YouTube'
+  , alias: 'yt'
+  , search: (term) => {
       return fetchJSON('http://gdata.youtube.com/feeds/api/videos', {
-        'type': 'video',
-        'max-results': 5,
-        'alt': 'json',
-        'q': term
+        'type': 'video'
+      , 'max-results': 5
+      , 'alt': 'json'
+      , 'q': term
       }).then((json) => {
         return {
           items: _.map(json.feed.entry, (entry) => {
             return {
-              title: entry.title.$t,
-              url: entry.media$group.media$player[0].url,
-              duration: entry.media$group.yt$duration.seconds
+              title: entry.title.$t
+            , url: entry.media$group.media$player[0].url
+            , duration: entry.media$group.yt$duration.seconds
             };
           })
         }
       });
-    },
-  },
-  soundcloud: {
-    name: 'SoundCloud',
-    alias: 'sc',
-    search: (term) => {
+    }
+  }
+, soundcloud: {
+    name: 'SoundCloud'
+  , alias: 'sc'
+  , search: (term) => {
       return fetchJSON('http://api.soundcloud.com/tracks.json', {
-        'client_id': config.soundcloudClientId,
-        'q': term
+        'client_id': config.soundcloudClientId
+      , 'q': term
       }).then((json) => {
         return {
           items: _.map(_.take(json, 7), (entry) => {
             return {
-              title: entry.title,
-              url: entry.uri,
-              duration: entry.duration
+              title: entry.title
+            , url: entry.uri
+            , duration: entry.duration
             };
           })
         };
@@ -56,6 +56,7 @@ class Search {
     this.resultsTemplate = loadTemplate('#template-search-results');
     this.el = document.querySelector(selector);
   }
+
   render() {
     this.el.innerHTML = this.template();
     this.input = this.el.querySelector('input#search-url');
@@ -64,15 +65,17 @@ class Search {
 
     bindEvent(this, '#search form', 'submit', this.submitHandler);
     bindEvents(this, 'input#search-url', {
-      'input': this.changeHandler,
-      'focus': this.changeHandler,
-      'blur': this.blurHandler,
+      'input': this.changeHandler
+    , 'focus': this.changeHandler
+    , 'blur': this.blurHandler
     });
   }
+
   renderResults(json) {
     this.results.innerHTML = this.resultsTemplate(json);
     bindEvent(this, '.results a', 'click', this.clickHandler);
   }
+
   renderProviders(providers) {
     this.results.innerHTML = _.map(providers, (provider) => {
       return `<li><strong>${provider.alias}</strong>:
@@ -83,6 +86,7 @@ class Search {
   emptyResults() {
     this.results.innerHTML = '';
   }
+
   changeHandler(ev) {
     let term = ev.target.value;
     this.submit.disabled = true;
@@ -96,26 +100,31 @@ class Search {
       this.renderProviders(searchProviders);
     }
   }
+
   submitHandler(ev) {
     ev.preventDefault();
     if (this.input.value.startsWith('http')) {
       api.showUrl(this.input.value);
     }
   }
+
   blurHandler(ev) {
     setTimeout(() => {
       this.input.value = '';
       this.emptyResults()
     }, 300);
   }
+
   clickHandler(ev) {
     // ev.target is the <a> element, parentNode the <li> element.
     api.showUrl(ev.target.parentNode.getAttribute('data-link'));
   }
+
   doSearch(query) {
-    let query_words = query.split(' '),
-      provider_alias = _.first(query_words),
-      terms = _.rest(query_words).join(' ');
+    let query_words = query.split(' ')
+      , provider_alias = _.first(query_words)
+      , terms = _.rest(query_words).join(' ')
+    ;
     console.log('alias, terms', provider_alias, terms);
 
     let matchingProviders = _.filter(searchProviders, (provider, name) => {
@@ -124,7 +133,7 @@ class Search {
     });
 
     if (terms.length === 0) {
-          this.renderProviders(matchingProviders);
+      this.renderProviders(matchingProviders);
     }
 
     if (matchingProviders.length === 1 && terms.length > 0) {
@@ -135,4 +144,5 @@ class Search {
     }
   }
 }
+
 export default Search;

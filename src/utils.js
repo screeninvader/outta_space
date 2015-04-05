@@ -16,11 +16,11 @@ function fetchJSON(url, parameters) {
 var helpers = {
   isActive(current, active) {
     return current + 1 === parseInt(active) ? 'active' : '';
-  },
-  oddEven(index) {
+  }
+, oddEven(index) {
     return index % 2 ? 'odd' : 'even';
-  },
-  inMinutes(seconds) {
+  }
+, inMinutes(seconds) {
     return Math.floor(seconds / 60) + ':' + (seconds % 60);
   }
 };

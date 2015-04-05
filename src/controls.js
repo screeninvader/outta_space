@@ -6,12 +6,13 @@ class Controls {
     this.el = document.querySelector(selector);
     this.template = loadTemplate('#template-controls');
     this.actions = [
-      'previous', 'play', 'pause', 'next'];
+      'previous', 'play', 'pause', 'next'
+    ];
   }
   render(state) {
     this.el.innerHTML = this.template({
-      actions: this.actions,
-      volume: state.sound.volume,
+      actions: this.actions
+    , volume: state.sound.volume
     });
     bindEvent(this, 'a.action', 'click', this.clickHandler);
     bindEvent(this, '#volume', 'change', this.volumeHandler);
