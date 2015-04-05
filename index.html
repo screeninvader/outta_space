@@ -1,52 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>ScreenInvader</title>
-        <script src="./bundle.js"></script>
-        <link rel="stylesheet" href="./theme/style.css">
-    </head>
-    <body>
-        <header>
-            <div id="controls"></div>
-            <div id="search"></div>
-        </header>
-        <div id="playlist"></div>
-
-        <script id="template-playlist" type="x-tmpl-underscore">
-         <ul>
-             <% _.each(items, function(item, current) { %>
-                 <li data-id="<%= current %>"
-                     class="<%= isActive(current, index) %>
-                            <%= oddEven(current) %>">
-                     <a href="#"><%= item.title %></a>
-                 </li>
-             <% }); %>
-         </ul>
-        </script>
-        <script id="template-controls" type="x-tmpl-underscore">
-         <% _.each(actions, function(action) { %>
-             <a href="#" id="<%= action %>" class="icon action"><%= action %></a>
-         <% }); %>
-        <input id="volume" type="range" min="0" max="100" value="<%= volume %>" />
-        </script>
-        <script id="template-search" type="x-tmpl-underscore">
-          <form>
-            <input id="search-url" type="text"
-                   placeholder="Post something!">
-            <input id="search-submit" type="submit" value="Go!" disabled>
-          </form>
-         <ul class="results">
-         </ul>
-        </script>
-        <script id="template-search-results" type="x-tmpl-underscore">
-             <% _.each(items, function(item) { %>
-                 <li data-link="<%= item.url %>">
-                     <a href="#"><%= item.title %>
-                         (<%= inMinutes(item.duration) %>)
-                     </a>
-                 </li>
-             <% }); %>
-        </script>
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <title>ScreenInvader</title>
+    <script src="./bundle.js"></script>
+    <link rel="stylesheet" href="./theme/style.css">
+  </head>
+  <body>
+    <header>
+      <div id="controls"></div>
+      <div id="search"></div>
+    </header>
+    <div id="playlist"></div>
+    <script id="template-playlist" type="x-tmpl-underscore">
+      <ul>
+        <% _.each(items, function(item, current) { %>
+          <li data-id="<%= current %>"
+              class="<%= isActive(current, index) %>
+                     <%= oddEven(current) %>">
+            <a href="#"><%= item.title %></a>
+          </li>
+        <% }); %>
+      </ul>
+    </script>
+    <script id="template-controls" type="x-tmpl-underscore">
+      <% _.each(actions, function(action) { %>
+        <a href="#" id="<%= action %>" class="icon action"><%= action %></a>
+      <% }); %>
+      <input id="volume" type="range" min="0" max="100" value="<%= volume %>" />
+    </script>
+    <script id="template-search" type="x-tmpl-underscore">
+      <form>
+        <input id="search-url" type="text"
+               placeholder="Post something!">
+        <input id="search-submit" type="submit" value="Go!" disabled>
+      </form>
+      <ul class="results"></ul>
+    </script>
+    <script id="template-search-results" type="x-tmpl-underscore">
+      <% _.each(items, function(item) { %>
+        <li data-link="<%= item.url %>">
+          <a href="#"><%= item.title %>
+            (<%= inMinutes(item.duration) %>)
+          </a>
+        </li>
+      <% }); %>
+    </script>
+  </body>
 </html>
