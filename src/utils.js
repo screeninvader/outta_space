@@ -40,7 +40,7 @@ function bindEvent(self, target, event, handler) {
 
 function bindEvents(self, target, data) {
   _.each(data, (handler, event) => {
-    bindEvent(self, target, event, handler)
+    bindEvent(self, target, event, handler);
   });
 }
 

@@ -23,7 +23,7 @@ var searchProviders = {
             , duration: entry.media$group.yt$duration.seconds
             };
           })
-        }
+        };
       });
     }
   }
@@ -111,7 +111,7 @@ class Search {
   blurHandler(ev) {
     setTimeout(() => {
       this.input.value = '';
-      this.emptyResults()
+      this.emptyResults();
     }, 300);
   }
 
@@ -121,15 +121,15 @@ class Search {
   }
 
   doSearch(query) {
-    let query_words = query.split(' ')
-      , provider_alias = _.first(query_words)
-      , terms = _.rest(query_words).join(' ')
+    let queryWords = query.split(' ')
+      , providerAlias = _.first(queryWords)
+      , terms = _.rest(queryWords).join(' ')
     ;
-    console.log('alias, terms', provider_alias, terms);
+    console.log('alias, terms', providerAlias, terms);
 
     let matchingProviders = _.filter(searchProviders, (provider, name) => {
-      return provider.alias.startsWith(provider_alias)
-        || name.startsWith(provider_alias);
+      return (provider.alias.startsWith(providerAlias) ||
+              name.startsWith(providerAlias));
     });
 
     if (terms.length === 0) {
