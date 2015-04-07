@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import api from './api';
 import Playlist from './playlist';
 import Controls from './controls';
@@ -14,8 +15,7 @@ document.addEventListener('DOMContentLoaded', ev => {
 
 
   api.onError((error) => {
-    console.error(error);
-    document.querySelector('#message').innerHTML = "Can't connect to server.";
+    document.body.innerHTML = "Can't connect to server. Bug your admins!";
   });
 
   api.onReceive(state => {
