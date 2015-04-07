@@ -13,3 +13,11 @@ yet, changes in architecture and the API are to be expected.
 
 Contributions are very welcome, the project is licensed under [AGPLv3
 or later](http://www.gnu.org/licenses/agpl-3.0.html).
+
+##### Usage:
+```sh
+  git clone http://github.com/screeninvader/outta_space
+  npm install
+
+  xdg-open ./index.html && npm start
+```
