@@ -36,6 +36,9 @@ body > header .container,
   text-decoration: none;
   color: #008000;
 }
+#controls a:hover {
+  color: #00e600;
+}
 #controls #volume {
   display: inline-block;
   width: 50%;
@@ -74,16 +77,14 @@ li a {
   color: #008000;
 }
 li a:hover {
+  color: #00e600;
+}
+li.active a {
   color: #121212;
   background-color: #008000;
 }
-li:active a {
-  color: #121212;
-  background-color: #008000;
-}
-li:active a:hover {
-  color: #008000;
-  background-color: #121212;
+li.active a:hover {
+  background-color: #00e600;
 }
 input[type=range] {
   -webkit-appearance: none;

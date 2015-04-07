@@ -1,6 +1,7 @@
 @background: #121212;
 @foreground: rgba(0, 128, 0, 1);
 @border: @foreground;
+@highlight: lighten(@foreground, 20%);
 
 @import "./font/vt323.css";
 
@@ -52,6 +53,7 @@ body > header, #playlist {
     a {
         text-decoration: none;
         color: @foreground;
+        &:hover { color: @highlight; }
     }
     #volume {
         display: inline-block;
@@ -82,16 +84,14 @@ li {
         text-overflow: ellipsis;
         color: @foreground;
         &:hover {
-            color: @background;
-            background-color: @foreground;
+            color: @highlight;
         }
     }
     &.active a {
         color: @background;
         background-color: @foreground;
         &:hover {
-            color: @foreground;
-            background-color: @background;
+            background-color: @highlight;
         }
     }
 
