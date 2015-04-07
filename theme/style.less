@@ -1,0 +1,137 @@
+@background: #121212;
+@foreground: rgba(0, 128, 0, 1);
+@border: @foreground;
+
+@import "./font/vt323.css";
+
+.border() {
+    border: 0.1em dashed @border;
+}
+
+html, body {
+    margin: 0;
+}
+
+body, input {
+    font-family: 'VT323', monospace;
+    font-size: 1.5em;
+    color: @foreground;
+    background-color: @background;
+}
+
+body > header, #playlist {
+    max-width: 42em;
+    margin: 0 auto;
+
+    .container {
+        display: flex;
+    }
+}
+
+#search {
+    input {
+        font-size: 2em;
+        .border();
+    }
+}
+
+#playlist {
+
+}
+
+
+#controls {
+    display: flex;
+    align-items: center;
+
+    .icon {
+        display: inline-block;
+        white-space: nowrap;
+        margin-right: 1em;
+    }
+    a {
+        text-decoration: none;
+        color: @foreground;
+    }
+    #volume {
+        display: inline-block;
+        width: 50%;
+    }
+    #play.icon::before { content: '|> '; }
+    #pause.icon::before { content: '|| '; }
+    #stop.icon::before { content: '[] '; }
+    #previous.icon::before { content: '<< '; }
+    #next.icon::before { content: '>> '; }
+}
+
+ul {
+    .border();
+    list-style-type: none;
+    padding-left: 0;
+
+}
+li {
+    border-bottom: 0.1em dashed  @border;
+    &:last-of-type { border-bottom: none; }
+
+    a {
+        display: block;
+        padding: 0.5em;
+
+        text-decoration: none;
+        text-overflow: ellipsis;
+        color: @foreground;
+        &:hover {
+            color: @background;
+            background-color: @foreground;
+        }
+    }
+    &:active a {
+        color: @background;
+        background-color: @foreground;
+        &:hover {
+            color: @foreground;
+            background-color: @background;
+        }
+    }
+
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 5.5px 0;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  height: 5px;
+  cursor: pointer;
+  background-color: @foreground;
+  border: 0;
+}
+input[type=range]::-webkit-slider-thumb {
+    border: 0;
+    border-radius: 0;
+    height: 16px;
+    width: 10px;
+    background-color: @foreground;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+input[type=range]::-moz-range-track {
+  height: 5px;
+  cursor: pointer;
+  background-color: @foreground;
+  border: 0;
+}
+input[type=range]::-moz-range-thumb {
+    border: 0;
+    border-radius: 0;
+    height: 16px;
+    width: 10px;
+    background: @foreground;
+    cursor: pointer;
+}
