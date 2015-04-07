@@ -54,6 +54,7 @@ class Search {
     var changeHandler = _.throttle(this.changeHandler, 300);
     this.template = loadTemplate('#template-search');
     this.resultsTemplate = loadTemplate('#template-search-results');
+    this.providersTemplate = loadTemplate('#template-search-providers');
     this.el = document.querySelector(selector);
   }
 
@@ -76,11 +77,8 @@ class Search {
     bindEvent(this, '.results a', 'click', this.clickHandler);
   }
 
-  renderProviders(providers) {
-    this.results.innerHTML = _.map(providers, (provider) => {
-      return `<li><strong>${provider.alias}</strong>:
-          ${provider.name}</li>`;
-    });
+  renderProviders(items) {
+    this.results.innerHTML = this.providersTemplate({items});
   }
 
   emptyResults() {
