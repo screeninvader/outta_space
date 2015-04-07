@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', ev => {
     // works completely independent from state updates.
     _.once(() => {
       search.render();
-    });
+    })();
 
     console.debug('Rerendering...');
     playlist.render(state);
