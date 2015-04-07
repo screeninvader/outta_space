@@ -1,7 +1,12 @@
 @import "./font/vt323.css";
+#message {
+  padding: 1em;
+  color: red;
+  border: 0.1em dashed #ff0000;
+}
 html,
 body {
-  margin: 0;
+  margin: 0.5em;
 }
 body,
 input {

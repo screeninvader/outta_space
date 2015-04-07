@@ -5,12 +5,18 @@
 
 @import "./font/vt323.css";
 
-.border() {
-    border: 0.1em dashed @border;
+#message {
+    padding: 1em;
+    color: red;
+    .border(red);
+}
+
+.border(@color: @border) {
+    border: 0.1em dashed @color;
 }
 
 html, body {
-    margin: 0;
+    margin: 0.5em;
 }
 
 body, input {
