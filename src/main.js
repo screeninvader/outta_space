@@ -1,4 +1,3 @@
-import _ from 'underscore';
 import api from './api';
 import Playlist from './playlist';
 import Controls from './controls';
