@@ -56,6 +56,8 @@ class Search {
     this.resultsTemplate = loadTemplate('#template-search-results');
     this.providersTemplate = loadTemplate('#template-search-providers');
     this.el = document.querySelector(selector);
+    
+    this.init = _.once(this.render);
   }
 
   render() {
