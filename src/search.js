@@ -2,6 +2,7 @@ import _ from 'underscore';
 import {loadTemplate, fetchJSON, bindEvent, bindEvents} from './utils';
 import config from './config';
 import api from './api';
+import {startsWith} from 'underscore.string';
 
 
 var searchProviders = {
@@ -89,7 +90,7 @@ class Search {
     let term = ev.target.value;
     this.submit.disabled = true;
     if (term.length > 0) {
-      if (term.startsWith('http')) {
+      if (startsWith(term, 'http')) {
         this.submit.disabled = false;
       } else {
         this.doSearch(term);
@@ -101,7 +102,7 @@ class Search {
 
   submitHandler(ev) {
     ev.preventDefault();
-    if (this.input.value.startsWith('http')) {
+    if (startsWith(this.input.value, 'http')) {
       api.showUrl(this.input.value);
     }
   }
@@ -126,8 +127,8 @@ class Search {
     console.log('alias, terms', providerAlias, terms);
 
     let matchingProviders = _.filter(searchProviders, (provider, name) => {
-      return (provider.alias.startsWith(providerAlias) ||
-              name.startsWith(providerAlias));
+      return (startsWith(provider.alias, providerAlias) ||
+              startsWith(name, providerAlias));
     });
 
     if (terms.length === 0) {

@@ -4,7 +4,8 @@
   "description": "a web frontend for ScreenInvader",
   "dependencies": {
     "screeninvader.js": "screeninvader/screeninvader.js",
-    "underscore": "~1.8.2"
+    "underscore": "~1.8.2",
+    "underscore.string": "^3.0.3"
   },
   "devDependencies": {
     "babelify": "~5.0.4",
