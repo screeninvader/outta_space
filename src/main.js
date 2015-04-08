@@ -17,13 +17,9 @@ document.addEventListener('DOMContentLoaded', ev => {
     document.body.innerHTML = "Can't connect to server. Bug your admins!";
   });
 
-  // search.render is called here once for the initial search box and
-  // gets updated if it's own change handler is triggered, because it
-  // works completely independent from state updates.
-  search.render();
-
   api.onReceive(state => {
     console.debug('Rerendering...');
+    search.init();
     playlist.render(state);
     controls.render(state);
   });
