@@ -11,21 +11,21 @@ document.addEventListener('DOMContentLoaded', ev => {
   var playlist = new Playlist('#playlist')
     , controls = new Controls('#controls')
     , search = new Search('#search')
-  ;
-
+    ;
 
   api.onError((error) => {
-    document.body.innerHTML = "Can't connect to server. Bug your admins!";
+    document.body.innerHTML = 'Can\'t connect to server. Bug your admins!';
   });
 
-  api.onReceive(state => {
-    // search.render is called here once for the initial search box and
-    // gets updated if it's own change handler is triggered, because it
-    // works completely independent from state updates.
-    _.once(() => {
-      search.render();
-    })();
+  // search.render is called here once for the initial search box and
+  // gets updated if it's own change handler is triggered, because it
+  // works completely independent from state updates.
+  let renderOnce = _.once(() => {
+    search.render();
+  });
 
+  api.onReceive((state) => {
+    renderOnce();
     console.debug('Rerendering...');
     playlist.render(state);
     controls.render(state);
