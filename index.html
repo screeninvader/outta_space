@@ -15,10 +15,10 @@
     <script id="template-playlist" type="x-tmpl-underscore">
      <ul>
      <% _.each(items, function(item, current) { %>
-       <li data-id="<%= current %>"
+       <li id="<%= current %>" data-id="<%= current %>"
        class="<%= isActive(current, index) %>
                      <%= oddEven(current) %>">
-       <a href="#"><%= item.title %></a>
+       <a href="#<%= current %>"><%= item.title %></a>
        </li>
        <% }); %>
      </ul>
