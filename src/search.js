@@ -11,7 +11,7 @@ var searchProviders = {
   , search: (term) => {
       return fetchJSON('http://gdata.youtube.com/feeds/api/videos', {
         'type': 'video'
-      , 'max-results': 5
+      , 'max-results': 25
       , 'alt': 'json'
       , 'q': term
       }).then((json) => {

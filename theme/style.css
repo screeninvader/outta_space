@@ -34,8 +34,10 @@ body > header .container,
   cursor: "pointer";
 }
 #search-results ul {
+  height: 300px;
   background-color: #181818;
   margin: 0;
+  overflow-y: scroll;
 }
 #controls {
   display: flex;
