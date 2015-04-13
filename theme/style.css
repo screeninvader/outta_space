@@ -19,6 +19,16 @@ body > header .container,
 #playlist .container {
   display: flex;
 }
+#playlist ul div {
+  display: inline-block;
+  width: 100%;
+}
+#playlist ul li div .item {
+  display: inline-block;
+}
+#playlist ul li div .remove {
+  float: right;
+}
 #search input {
   font-size: 2em;
   border: 0.1em dashed #008000;
@@ -95,12 +105,14 @@ li a {
 li a:hover {
   color: #00e600;
 }
-li.active a {
-  color: #121212;
+li.active {
   background-color: #008000;
 }
-li.active a:hover {
+li.active:hover {
   background-color: #00e600;
+}
+li.active a {
+  color: #121212;
 }
 input[type=range] {
   -webkit-appearance: none;

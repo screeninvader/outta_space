@@ -8,11 +8,15 @@ class Playlist {
   }
   render(state) {
     this.el.innerHTML = this.template(state.playlist);
-    bindEvent(this, 'a', 'click', this.clickHandler);
+    bindEvent(this, '.item', 'click', this.clickHandler);
+    bindEvent(this, '.remove', 'click', this.removeHandler);
   }
   clickHandler(ev) {
-    // ev.target is the <a> element, parentNode the <li> element.
-    api.player.jump(ev.target.parentNode.getAttribute('data-id'));
+    // ev.target is the <a> element, parentNode.parentNode the <li> element.
+    api.player.jump(ev.target.parentNode.parentNode.getAttribute('data-id'));
+  }
+  removeHandler(ev) {
+    api.playlist.remove(ev.target.parentNode.parentNode.getAttribute('data-id'));
   }
 }
 

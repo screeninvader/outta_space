@@ -19,7 +19,10 @@
        <li id="<%= current %>" data-id="<%= current %>"
        class="<%= isActive(current, index) %>
                      <%= oddEven(current) %>">
-       <a href="#<%= current %>"><%= item.title %></a>
+       <div>
+       <a class="item" href="#<%= current %>"><%= item.title %></a>
+       <a class="remove" href="#">X</a>
+       </div>
        </li>
        <% }); %>
      </ul>

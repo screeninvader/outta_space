@@ -29,6 +29,23 @@ body > header, #playlist {
     }
 }
 
+#playlist {
+
+    ul {
+    }
+    ul div {
+      display: inline-block;
+      width: 100%;
+    }
+    ul li div .item {
+      display: inline-block;
+    }
+
+    ul li div .remove {
+      float:right;
+    }
+}
+
 #search {
     input {
         font-size: 2em;
@@ -57,11 +74,6 @@ body > header, #playlist {
     overflow-y: scroll;
   }
 }
-
-#playlist {
-
-}
-
 
 #controls {
     display: flex;
@@ -109,14 +121,16 @@ li {
             color: @highlight;
         }
     }
-    &.active a {
-        color: @background;
+    &.active {
         background-color: @foreground;
         &:hover {
             background-color: @highlight;
         }
     }
 
+    &.active a {
+        color: @background;
+    }
 }
 
 input[type=range] {
