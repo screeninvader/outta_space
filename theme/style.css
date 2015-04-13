@@ -38,6 +38,7 @@ body > header .container,
   font-size: 0.8em;
 }
 #playlist ul li .expanded a {
+  color: #008000;
   padding: 5px;
   margin: 0;
 }
