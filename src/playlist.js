@@ -13,7 +13,7 @@ class Playlist {
     bindEvent(this, '.remove', 'click', this.removeHandler);
     bindEvent(this, '.expand', 'click', this.expandHandler);
     var sort = Sortable.create(document.querySelector("#playlist ul"), {
-      animation: 150, // ms, animation speed moving items when sorting, `0` — without animation
+      animation: 0, // ms, animation speed moving items when sorting, `0` — without animation
       handle: "ul", // Restricts sort start click/touch to the specified element
       draggable: "li", // Specifies which items inside the element should be sortable
       onUpdate: function (evt/**Event*/){
