@@ -39,15 +39,18 @@
      <div class="results"></div>
     </script>
     <script id="template-search-results" type="x-tmpl-underscore">
-     <ul>
-     <% _.each(items, function(item) { %>
-       <li data-link="<%= item.url %>">
-       <a href="#"><%= item.title %>
-       (<%= inMinutes(item.duration) %>)
-         </a>
-       </li>
-       <% }); %>
-     </ul>
+     <div id="search-results">
+       <div class="bar"><a class="close" href="#">X</a></div>
+       <ul>
+       <% _.each(items, function(item) { %>
+         <li data-link="<%= item.url %>">
+         <a class ="item" href="#"><%= item.title %>
+         (<%= inMinutes(item.duration) %>)
+           </a>
+         </li>
+         <% }); %>
+       </ul>
+     </div>
     </script>
     <script id="template-search-providers" type="x-tmpl-underscore">
      <p>Enter an URL directly or search interactively by entering a search

@@ -23,6 +23,23 @@ body > header .container,
   font-size: 2em;
   border: 0.1em dashed #008000;
 }
+
+#search-results .bar {
+  text-align: right;
+  background-color: #008000;
+  margin-top: 10px;
+}
+
+#search-results .close {
+  padding: 5px;
+  color: #121212;
+  cursor: "pointer";
+}
+
+#search-results ul {
+  background-color: #181818;
+}
+
 #controls {
   display: flex;
   align-items: center;
@@ -58,10 +75,12 @@ body > header .container,
 #controls #next.icon::before {
   content: '>> ';
 }
+
 ul {
   border: 0.1em dashed #008000;
   list-style-type: none;
-  padding-left: 0;
+  padding: 0;
+  margin:0;
 }
 li {
   border-bottom: 0.1em dashed #008000;

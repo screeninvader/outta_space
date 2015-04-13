@@ -74,7 +74,15 @@ class Search {
 
   renderResults(json) {
     this.results.innerHTML = this.resultsTemplate(json);
-    bindEvent(this, '.results a', 'click', this.clickHandler);
+    bindEvent(this, '.results .item', 'click', this.clickHandler);
+    bindEvents(this, "#search-results .close", {
+      "click": ev => { this.emptyResults(); }
+    });
+    document.addEventListener("keydown", ev => {
+      if(ev.keyCode == 27) {
+        this.emptyResults();
+      }
+    });
   }
 
   renderProviders(items) {
@@ -107,10 +115,7 @@ class Search {
   }
 
   blurHandler(ev) {
-    setTimeout(() => {
-      this.input.value = '';
-      this.emptyResults();
-    }, 300);
+     this.input.value = '';
   }
 
   clickHandler(ev) {
