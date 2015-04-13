@@ -3,6 +3,7 @@ import api from './api';
 import Playlist from './playlist';
 import Controls from './controls';
 import Search from './search';
+import Notify from './notify';
 
 // we seem to need DOMContentLoaded here, because script tags,
 // including our mustache templates aren't necessarily loaded

@@ -6,15 +6,15 @@ class Notify {
   }  
 
   normal(msg) {
-    humane.log(msg, { timeout: 1000, baseCls: 'humane-libnotify' });
+    humane.log(msg, { timeout: 1000, baseCls: 'humane-flatty' });
   }
 
   long(msg) {
-    humane.log(msg, { timeout: 3000, baseCls: 'humane-libnotify' });
+    humane.log(msg, { timeout: 3000, baseCls: 'humane-flatty' });
   }
 
   exception(msg) {
-    humane.log(msg, { timeout: 5000, baseCls: 'humane-libnotify-error' });
+    humane.log(msg, { timeout: 5000, baseCls: 'humane-flatty-error' });
   }
 }
 
