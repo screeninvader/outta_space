@@ -1,4 +1,4 @@
-@import "./font/vt323.css";
+@import "font/vt323.css";
 html,
 body {
   margin: 0.5em;
@@ -23,7 +23,19 @@ body > header .container,
   font-size: 2em;
   border: 0.1em dashed #008000;
 }
-
+#search #search-results .bar {
+  text-align: right;
+  background-color: #008000;
+  margin-top: 10px;
+}
+#search #search-results .close {
+  padding: 5px;
+  color: #121212;
+  cursor: "pointer";
+}
+#search #search-results ul {
+  background-color: #181818;
+}
 #controls {
   display: flex;
   align-items: center;
@@ -59,12 +71,10 @@ body > header .container,
 #controls #next.icon::before {
   content: '>> ';
 }
-
 ul {
   border: 0.1em dashed #008000;
   list-style-type: none;
-  padding: 0;
-  margin:0;
+  padding-left: 0;
 }
 li {
   border-bottom: 0.1em dashed #008000;
