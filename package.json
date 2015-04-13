@@ -5,7 +5,9 @@
   "dependencies": {
     "screeninvader.js": "screeninvader/screeninvader.js",
     "underscore": "~1.8.2",
-    "humane-js": "wavded/humane-js"
+    "humane-js": "wavded/humane-js",
+    "sortablejs": "1.1.1"
+    
   },
   "devDependencies": {
     "babelify": "~5.0.4",
