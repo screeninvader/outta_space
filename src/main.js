@@ -3,7 +3,7 @@ import api from './api';
 import Playlist from './playlist';
 import Controls from './controls';
 import Search from './search';
-import Notify from './notify';
+import notify from './notify';
 
 // we seem to need DOMContentLoaded here, because script tags,
 // including our mustache templates aren't necessarily loaded
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', ev => {
     ;
 
   api.onError((error) => {
-    document.body.innerHTML = 'Can\'t connect to server. Bug your admins!';
+    notify.exception("Can't connect to ScreenInvader");
   });
 
   // search.render is called here once for the initial search box and
