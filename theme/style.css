@@ -24,22 +24,6 @@ body > header .container,
   border: 0.1em dashed #008000;
 }
 
-#search-results .bar {
-  text-align: right;
-  background-color: #008000;
-  margin-top: 10px;
-}
-
-#search-results .close {
-  padding: 5px;
-  color: #121212;
-  cursor: "pointer";
-}
-
-#search-results ul {
-  background-color: #181818;
-}
-
 #controls {
   display: flex;
   align-items: center;
