@@ -10,6 +10,7 @@ class Playlist {
     this.el.innerHTML = this.template(state.playlist);
     bindEvent(this, '.item', 'click', this.clickHandler);
     bindEvent(this, '.remove', 'click', this.removeHandler);
+    bindEvent(this, '.expand', 'click', this.expandHandler);
   }
   clickHandler(ev) {
     // ev.target is the <a> element, parentNode.parentNode the <li> element.
@@ -17,6 +18,13 @@ class Playlist {
   }
   removeHandler(ev) {
     api.playlist.remove(ev.target.parentNode.parentNode.getAttribute('data-id'));
+  }
+  expandHandler(ev) {
+    var expanded = ev.target.parentNode.parentNode.querySelector(".expanded");
+    if(expanded.style.display !== 'inline-block')
+      expanded.style.display = 'inline-block';
+    else
+      expanded.style.display = 'none';
   }
 }
 

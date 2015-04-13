@@ -33,16 +33,32 @@ body > header, #playlist {
 
     ul {
     }
-    ul div {
-      display: inline-block;
-      width: 100%;
-    }
+
     ul li div .item {
-      display: inline-block;
+      float:left;
+    }
+
+    ul li div {
+      width: 100%;
+      display:inline-block;
+    }
+
+    ul li div .expand {
+      float:right;
     }
 
     ul li div .remove {
       float:right;
+    }
+
+    ul li .expanded {
+      display: none;
+      background-color: #181818;
+      font-size: 0.8em;
+      a {
+      padding: 5px;
+      margin: 0;
+      }
     }
 }
 

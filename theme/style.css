@@ -19,15 +19,27 @@ body > header .container,
 #playlist .container {
   display: flex;
 }
-#playlist ul div {
-  display: inline-block;
-  width: 100%;
-}
 #playlist ul li div .item {
+  float: left;
+}
+#playlist ul li div {
+  width: 100%;
   display: inline-block;
+}
+#playlist ul li div .expand {
+  float: right;
 }
 #playlist ul li div .remove {
   float: right;
+}
+#playlist ul li .expanded {
+  display: none;
+  background-color: #181818;
+  font-size: 0.8em;
+}
+#playlist ul li .expanded a {
+  padding: 5px;
+  margin: 0;
 }
 #search input {
   font-size: 2em;
