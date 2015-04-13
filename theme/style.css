@@ -23,18 +23,19 @@ body > header .container,
   font-size: 2em;
   border: 0.1em dashed #008000;
 }
-#search #search-results .bar {
+#search-results .bar {
   text-align: right;
   background-color: #008000;
   margin-top: 10px;
 }
-#search #search-results .close {
+#search-results .close {
   padding: 5px;
   color: #121212;
   cursor: "pointer";
 }
-#search #search-results ul {
+#search-results ul {
   background-color: #181818;
+  margin: 0;
 }
 #controls {
   display: flex;
