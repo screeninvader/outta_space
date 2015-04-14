@@ -3,6 +3,10 @@ html,
 body {
   margin: 0.5em;
 }
+body {
+  max-width: 42em;
+  margin: 0 auto;
+}
 body,
 input {
   font-family: 'VT323', monospace;
@@ -10,21 +14,12 @@ input {
   color: #008000;
   background-color: #121212;
 }
-body > header,
-#playlist {
-  max-width: 42em;
-  margin: 0 auto;
-}
-body > header .container,
-#playlist .container {
-  display: flex;
-}
-#playlist ul li div .item {
-  float: left;
-}
 #playlist ul li div {
   width: 100%;
   display: inline-block;
+}
+#playlist ul li div .item {
+  float: left;
 }
 #playlist ul li div .expand {
   float: right;
@@ -108,29 +103,29 @@ ul {
   list-style-type: none;
   padding-left: 0;
 }
-li {
+ul li {
   border-bottom: 0.1em dashed #008000;
 }
-li:last-of-type {
+ul li:last-of-type {
   border-bottom: none;
 }
-li a {
+ul li a {
   display: block;
   padding: 0.5em;
   text-decoration: none;
   text-overflow: ellipsis;
   color: #008000;
 }
-li a:hover {
+ul li a:hover {
   color: #00e600;
 }
-li.active {
+ul li.active {
   background-color: #008000;
 }
-li.active:hover {
+ul li.active:hover {
   background-color: #00e600;
 }
-li.active a {
+ul li.active a {
   color: #121212;
 }
 input[type=range] {
