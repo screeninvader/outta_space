@@ -52,66 +52,57 @@ var searchProviders = {
 class Search {
   constructor (selector) {
     var changeHandler = _.throttle(this.changeHandler, 300);
-    this.template = this.underscoreSearchTemplate();
-    this.resultsTemplate = this.underscoreSearchResultTemplate();
-    this.providersTemplate = this.underscoreSearchProviderTemplate();
     this.el = document.querySelector(selector);
   }
 
-  underscoreSearchTemplate() {
-    return (state) => {
-      state = state || {};
-      return _.template(`
-        <form>
-          <input id="search-url" 
-                 type="text"
-                 placeholder="Post something!">
-          <input id="search-submit" type="submit" value="Go!" disabled>
-        </form>
-        <div class="results"></div>
-      `)(_.extend(state, helpers));
-    }
+  template(state) {
+    state = state || {};
+    return _.template(`
+      <form>
+        <input id="search-url" 
+               type="text"
+               placeholder="Post something!">
+        <input id="search-submit" type="submit" value="Go!" disabled>
+      </form>
+      <div class="results"></div>
+    `)(_.extend(state, helpers));
   }
 
-  underscoreSearchResultTemplate() {
-    return (state) => {
-      state = state || {};
-      return _.template(`
-        <div id="search-results">
-          <div class="bar">
-            <a class="close" href="#">X</a>
-          </div>
-          <ul>
-            <% _.each(items, function(item) { %>
-              <li data-link="<%= item.url %>">
-                <a class ="item" href="#"><%= item.title %>
-                  (<%= inMinutes(item.duration) %>)
-                </a>
-              </li>
-            <% }); %>
-          </ul>
+  resultsTemplate(state) {
+    state = state || {};
+    return _.template(`
+      <div id="search-results">
+        <div class="bar">
+          <a class="close" href="#">X</a>
         </div>
-      `)(_.extend(state, helpers));
-    }
-  }
-  
-  underscoreSearchProviderTemplate() {
-    return (state) => {
-      state = state || {};
-      return _.template(`
-        <p>Enter an URL directly or search interactively by entering a search
-         providers name or alias followed by your search terms.
-        "<code>yt Metalab</code>", for example, searches YouTube for
-        "Metalab". The following providers are available:</p>
         <ul>
           <% _.each(items, function(item) { %>
-            <li>
-              <%= item.name %> (<strong><%= item.alias %></strong>)
+            <li data-link="<%= item.url %>">
+              <a class ="item" href="#"><%= item.title %>
+                (<%= inMinutes(item.duration) %>)
+              </a>
             </li>
           <% }); %>
         </ul>
-      `)(_.extend(state, helpers));
-    }
+      </div>
+    `)(_.extend(state, helpers));
+  }
+  
+  providersTemplate(state) {
+    state = state || {};
+    return _.template(`
+      <p>Enter an URL directly or search interactively by entering a search
+       providers name or alias followed by your search terms.
+      "<code>yt Metalab</code>", for example, searches YouTube for
+      "Metalab". The following providers are available:</p>
+      <ul>
+        <% _.each(items, function(item) { %>
+          <li>
+            <%= item.name %> (<strong><%= item.alias %></strong>)
+          </li>
+        <% }); %>
+      </ul>
+    `)(_.extend(state, helpers));
   }
 
   render() {
