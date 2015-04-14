@@ -92,9 +92,15 @@ body > header .container,
   content: '[] ';
 }
 #controls #previous.icon::before {
-  content: '<< ';
+  content: '|< ';
 }
 #controls #next.icon::before {
+  content: '>| ';
+}
+#controls #rewind.icon::before {
+  content: '<< ';
+}
+#controls #forward.icon::before {
   content: '>> ';
 }
 ul {
