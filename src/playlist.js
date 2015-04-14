@@ -12,14 +12,14 @@ class Playlist {
     bindEvent(this, '.item', 'click', this.clickHandler);
     bindEvent(this, '.remove', 'click', this.removeHandler);
     bindEvent(this, '.expand', 'click', this.expandHandler);
-  /*  var sort = Sortable.create(document.querySelector("#playlist ul"), {
+    var sort = Sortable.create(document.querySelector("#playlist ul"), {
       animation: 0, // ms, animation speed moving items when sorting, `0` — without animation
       handle: "ul", // Restricts sort start click/touch to the specified element
       draggable: "li", // Specifies which items inside the element should be sortable
       onUpdate: function (evt){
         api.playlist.shift(evt.oldIndex, evt.newIndex);
       }
-    });*/
+    });
   }
   clickHandler(ev) {
     // ev.target is the <a> element, parentNode.parentNode the <li> element.
