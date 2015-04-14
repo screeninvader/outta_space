@@ -6,7 +6,7 @@ class Controls {
     this.el = document.querySelector(selector);
     this.template = loadTemplate('#template-controls');
     this.actions = [
-      'previous', 'play', 'pause', 'next'
+      'previous', 'rewind', 'pause', 'forward', 'next'
     ];
   }
   render(state) {
