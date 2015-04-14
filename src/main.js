@@ -1,6 +1,9 @@
+import "babel/polyfill";
+
 import _ from 'underscore';
 import api from './api';
 import Playlist from '../modules/playlist';
+
 import Controls from '../modules/controls';
 import Search from '../modules/search';
 import notify from './notify';
