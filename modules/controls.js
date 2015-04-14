@@ -6,7 +6,7 @@ class Controls {
   constructor(selector) {
     this.el = document.querySelector(selector);
     this.actions = [
-      'previous', 'play', 'pause', 'next'
+      'previous', 'rewind',  'pause', 'forward', 'next'
     ];
   }
 
@@ -15,7 +15,7 @@ class Controls {
     state.actions = this.actions;
     return _.template(`
       <% _.each(actions, function(action) { %>
-        <a href="#" id="<%= action %>" class="icon action"><%= action %></a>
+        <a href="#" id="<%= action %>" class="icon action" title="<%= action %>"></a>
       <% }); %>
       <input id="volume" type="range" min="0" max="100" value="<%= sound.volume %>" />
     `)(_.extend(state, helpers));
