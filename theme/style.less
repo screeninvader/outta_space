@@ -19,6 +19,8 @@ html, body {
 body {
   max-width: 42em;
   margin: 0 auto;
+  padding: .5em 0;
+  position: relative;
 }
 
 body, input {
@@ -32,35 +34,43 @@ a {
   cursor: pointer;
 }
 
+header {
+  text-align: center;
+}
+
 #playlist {
+  padding: 1px 0 0;
+  display: inline-block;
+  width: 100%;
+
   .bar {
     text-align: right;
 
     span {
-    border: 0.1em dashed ;
-    background-color: #005000;
-    color: @background;
-    padding: 0.1em;
-    cursor: pointer;
-    width: 0%;
+      border: 0.1em dashed ;
+      background-color: #005000;
+      color: @background;
+      padding: 0.1em;
+      cursor: pointer;
+      width: 0%;
     }
   }
 
   ul li {
     div {
       width: 100%;
-      display:inline-block;
+      display: inline-block;
   
       .item {
-        float:left;
+        float: left;
       }
 
       .expand {
-        float:right;
+        float: right;
       }
 
       .remove {
-        float:right;
+        float: right;
       }
     }
     .expanded {
@@ -77,9 +87,8 @@ a {
 }
 
 #search {
-  float: left;
-
   input {
+    max-width: 70%;
     font-size: 2em;
     .border();
   }
@@ -88,28 +97,29 @@ a {
 #search-results {
 
   .bar {
-  text-align: right;
-  background-color: @border-color;
-  margin-top: 10px;
+    text-align: right;
+    background-color: @border-color;
+    margin-top: 10px;
   }
 
   .close {
-  padding: 5px;
-  color: @background;
-  cursor: "pointer";
+    padding: 5px;
+    color: @background;
+    cursor: "pointer";
   }
 
   ul {
-  height: 300px;
-  background-color: @background-light;
-  margin: 0;
-  overflow-y: scroll;
+    height: 300px;
+    background-color: @background-light;
+    margin: 0;
+    overflow-y: scroll;
   }
 }
 
 #controls {
-  display: flex;
-  align-items: center;
+  display: inline-block;
+  text-align: center;
+  margin: 1em 0 0;
 
   .icon {
     display: inline-block;
@@ -119,19 +129,24 @@ a {
   a {
     text-decoration: none;
     color: @foreground;
-    &:hover { color: @highlight; }
+    &:hover { 
+      color: @highlight; 
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
   #volume {
     display: inline-block;
-    width: 50%;
   }
-  #play.icon::before { content: '|> '; }
-  #pause.icon::before { content: '|| '; }
-  #stop.icon::before { content: '[] '; }
-  #previous.icon::before { content: '|< '; }
-  #next.icon::before { content: '>| '; }
-  #rewind.icon::before { content: '<< '; }
-  #forward.icon::before { content: '>> '; }
+  .play.icon::before { content: '|> '; }
+  .pause.icon::before { content: '|| '; }
+  .stop.icon::before { content: '[] '; }
+  .previous.icon::before { content: '|< '; }
+  .next.icon::before { content: '>| '; }
+  .rewind.icon::before { content: '<< '; }
+  .forward.icon::before { content: '>> '; }
 }
 
 ul {
@@ -203,5 +218,30 @@ input[type=range] {
     width: 10px;
     background: @foreground;
     cursor: pointer;
+  }
+}
+
+
+@media all and (min-width: 800px ) {
+  body {
+    font-size: 1.2em;
+
+    header {
+      position: relative;
+      #controls {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 0;
+        max-width: 49%;
+      }
+
+      #search {
+        max-width: 50%;
+      }
+    }
+    ul li a {
+      padding: 0 0.5em;
+    }
   }
 }

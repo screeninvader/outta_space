@@ -6,6 +6,8 @@ body {
 body {
   max-width: 42em;
   margin: 0 auto;
+  padding: .5em 0;
+  position: relative;
 }
 body,
 input {
@@ -16,6 +18,14 @@ input {
 }
 a {
   cursor: pointer;
+}
+header {
+  text-align: center;
+}
+#playlist {
+  padding: 1px 0 0;
+  display: inline-block;
+  width: 100%;
 }
 #playlist .bar {
   text-align: right;
@@ -51,10 +61,8 @@ a {
   padding: 5px;
   margin: 0;
 }
-#search {
-  float: left;
-}
 #search input {
+  max-width: 70%;
   font-size: 2em;
   border: 0.1em dashed #008000;
 }
@@ -75,8 +83,9 @@ a {
   overflow-y: scroll;
 }
 #controls {
-  display: flex;
-  align-items: center;
+  display: inline-block;
+  text-align: center;
+  margin: 1em 0 0;
 }
 #controls .icon {
   display: inline-block;
@@ -90,29 +99,31 @@ a {
 #controls a:hover {
   color: #00e600;
 }
+#controls a:last-child {
+  margin-right: 0;
+}
 #controls #volume {
   display: inline-block;
-  width: 50%;
 }
-#controls #play.icon::before {
+#controls .play.icon::before {
   content: '|> ';
 }
-#controls #pause.icon::before {
+#controls .pause.icon::before {
   content: '|| ';
 }
-#controls #stop.icon::before {
+#controls .stop.icon::before {
   content: '[] ';
 }
-#controls #previous.icon::before {
+#controls .previous.icon::before {
   content: '|< ';
 }
-#controls #next.icon::before {
+#controls .next.icon::before {
   content: '>| ';
 }
-#controls #rewind.icon::before {
+#controls .rewind.icon::before {
   content: '<< ';
 }
-#controls #forward.icon::before {
+#controls .forward.icon::before {
   content: '>> ';
 }
 ul {
@@ -181,4 +192,25 @@ input[type=range]::-moz-range-thumb {
   width: 10px;
   background: #008000;
   cursor: pointer;
+}
+@media all and (min-width: 800px) {
+  body {
+    font-size: 1.2em;
+  }
+  body header {
+    position: relative;
+  }
+  body header #controls {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 0;
+    max-width: 49%;
+  }
+  body header #search {
+    max-width: 50%;
+  }
+  body ul li a {
+    padding: 0 0.5em;
+  }
 }
