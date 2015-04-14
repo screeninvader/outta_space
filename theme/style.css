@@ -19,6 +19,20 @@ body > header .container,
 #playlist .container {
   display: flex;
 }
+#playlist ul {
+  margin: 0;
+}
+#playlist .bar {
+  text-align: right;
+}
+#playlist .bar span {
+  border: 0.1em dashed #008000;
+  background-color: #005000;
+  color: #121212;
+  padding: 0.1em;
+  cursor: pointer;
+  width: 0%;
+}
 #playlist ul li div .item {
   float: left;
 }

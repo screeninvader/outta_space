@@ -1,5 +1,7 @@
 @background: #121212;
+@background-light: #181818;
 @foreground: rgba(0, 128, 0, 1);
+@foreground-dark: rgba(0, 80, 0, 1);
 @border: @foreground;
 @highlight: lighten(@foreground, 20%);
 
@@ -32,6 +34,19 @@ body > header, #playlist {
 #playlist {
 
     ul {
+      margin: 0;
+    }
+
+    .bar {
+      text-align: right;
+      span {
+        .border();
+        background-color: @foreground-dark;
+        color: @background;
+        padding: 0.1em;
+        cursor: pointer;
+        width: 0%;
+      }
     }
 
     ul li div .item {
@@ -53,7 +68,7 @@ body > header, #playlist {
 
     ul li .expanded {
       display: none;
-      background-color: #181818;
+      background-color: @background-light;
       font-size: 0.8em;
       a {
         color: @foreground;
@@ -86,7 +101,7 @@ body > header, #playlist {
 
   ul {
     height: 300px;
-    background-color: #181818;
+    background-color: @background-light;
     margin: 0;
     overflow-y: scroll;
   }
