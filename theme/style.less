@@ -3,70 +3,67 @@
 @foreground: rgba(0, 128, 0, 1);
 @foreground-dark: rgba(0, 80, 0, 1);
 @border: @foreground;
+@border-color: #008000;
 @highlight: lighten(@foreground, 20%);
 
 @import "./font/vt323.css";
 
 .border(@color: @border) {
-    border: 0.1em dashed @color;
+  border: 0.1em dashed @color;
 }
 
 html, body {
-    margin: 0.5em;
+  margin: 0.5em;
+}
+
+body {
+  max-width: 42em;
+  margin: 0 auto;
 }
 
 body, input {
-    font-family: 'VT323', monospace;
-    font-size: 1.5em;
-    color: @foreground;
-    background-color: @background;
+  font-family: 'VT323', monospace;
+  font-size: 1.5em;
+  color: @foreground;
+  background-color: @background;
 }
 
-body > header, #playlist {
-    max-width: 42em;
-    margin: 0 auto;
-
-    .container {
-        display: flex;
-    }
+a {
+  cursor: pointer;
 }
 
 #playlist {
+  .bar {
+    text-align: right;
 
-    ul {
-      margin: 0;
+    span {
+    border: 0.1em dashed ;
+    background-color: #005000;
+    color: @background;
+    padding: 0.1em;
+    cursor: pointer;
+    width: 0%;
     }
+  }
 
-    .bar {
-      text-align: right;
-      span {
-        .border();
-        background-color: @foreground-dark;
-        color: @background;
-        padding: 0.1em;
-        cursor: pointer;
-        width: 0%;
-      }
-    }
-
-    ul li div .item {
-      float:left;
-    }
-
-    ul li div {
+  ul li {
+    div {
       width: 100%;
       display:inline-block;
-    }
+  
+      .item {
+        float:left;
+      }
 
-    ul li div .expand {
-      float:right;
-    }
+      .expand {
+        float:right;
+      }
 
-    ul li div .remove {
-      float:right;
+      .remove {
+        float:right;
+      }
     }
-
-    ul li .expanded {
+    .expanded {
       display: none;
       background-color: @background-light;
       font-size: 0.8em;
@@ -76,112 +73,115 @@ body > header, #playlist {
         margin: 0;
       }
     }
+  }
 }
 
 #search {
-    input {
-        font-size: 2em;
-        .border();
-    }
+  float: left;
+
+  input {
+    font-size: 2em;
+    .border();
+  }
 }
 
 #search-results {
 
   .bar {
-    text-align: right;
-    background-color: #008000;
-    margin-top: 10px;
+  text-align: right;
+  background-color: @border-color;
+  margin-top: 10px;
   }
 
   .close {
-    padding: 5px;
-    color: #121212;
-    cursor: "pointer";
+  padding: 5px;
+  color: @background;
+  cursor: "pointer";
   }
 
   ul {
-    height: 300px;
-    background-color: @background-light;
-    margin: 0;
-    overflow-y: scroll;
+  height: 300px;
+  background-color: @background-light;
+  margin: 0;
+  overflow-y: scroll;
   }
 }
 
 #controls {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    .icon {
-        display: inline-block;
-        white-space: nowrap;
-        margin-right: 1em;
-    }
-    a {
-        text-decoration: none;
-        color: @foreground;
-        &:hover { color: @highlight; }
-    }
-    #volume {
-        display: inline-block;
-        width: 50%;
-    }
-    #play.icon::before { content: '|> '; }
-    #pause.icon::before { content: '|| '; }
-    #stop.icon::before { content: '[] '; }
-    #previous.icon::before { content: '|< '; }
-    #next.icon::before { content: '>| '; }
-    #rewind.icon::before { content: '<< '; }
-    #forward.icon::before { content: '>> '; }
+  .icon {
+    display: inline-block;
+    white-space: nowrap;
+    margin-right: 1em;
+  }
+  a {
+    text-decoration: none;
+    color: @foreground;
+    &:hover { color: @highlight; }
+  }
+  #volume {
+    display: inline-block;
+    width: 50%;
+  }
+  #play.icon::before { content: '|> '; }
+  #pause.icon::before { content: '|| '; }
+  #stop.icon::before { content: '[] '; }
+  #previous.icon::before { content: '|< '; }
+  #next.icon::before { content: '>| '; }
+  #rewind.icon::before { content: '<< '; }
+  #forward.icon::before { content: '>> '; }
 }
 
 ul {
-    .border();
-    list-style-type: none;
-    padding-left: 0;
+  .border();
+  list-style-type: none;
+  padding-left: 0;
 
-}
-li {
+  li {
     border-bottom: 0.1em dashed  @border;
     &:last-of-type { border-bottom: none; }
 
     a {
-        display: block;
-        padding: 0.5em;
+      display: block;
+      padding: 0.5em;
 
-        text-decoration: none;
-        text-overflow: ellipsis;
-        color: @foreground;
-        &:hover {
-            color: @highlight;
-        }
+      text-decoration: none;
+      text-overflow: ellipsis;
+      color: @foreground;
+      &:hover {
+        color: @highlight;
+      }
     }
     &.active {
-        background-color: @foreground;
-        &:hover {
-            background-color: @highlight;
-        }
+      background-color: @foreground;
+      &:hover {
+        background-color: @highlight;
+      }
     }
 
     &.active a {
-        color: @background;
+      color: @background;
     }
+  }
 }
 
 input[type=range] {
   -webkit-appearance: none;
   width: 100%;
   margin: 5.5px 0;
-}
-input[type=range]:focus {
-  outline: none;
-}
-input[type=range]::-webkit-slider-runnable-track {
-  height: 5px;
-  cursor: pointer;
-  background-color: @foreground;
-  border: 0;
-}
-input[type=range]::-webkit-slider-thumb {
+
+  &:focus {
+    outline: none;
+  }
+  &::-webkit-slider-runnable-track {
+    height: 5px;
+    cursor: pointer;
+    background-color: @foreground;
+    border: 0;
+  }
+  &::-webkit-slider-thumb {
     border: 0;
     border-radius: 0;
     height: 16px;
@@ -189,19 +189,19 @@ input[type=range]::-webkit-slider-thumb {
     background-color: @foreground;
     cursor: pointer;
     -webkit-appearance: none;
-}
-
-input[type=range]::-moz-range-track {
-  height: 5px;
-  cursor: pointer;
-  background-color: @foreground;
-  border: 0;
-}
-input[type=range]::-moz-range-thumb {
+  }
+  &::-moz-range-track {
+    height: 5px;
+    cursor: pointer;
+    background-color: @foreground;
+    border: 0;
+  }
+  &::-moz-range-thumb {
     border: 0;
     border-radius: 0;
     height: 16px;
     width: 10px;
     background: @foreground;
     cursor: pointer;
+  }
 }
