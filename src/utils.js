@@ -13,7 +13,7 @@ function fetchJSON(url, parameters) {
   });
 }
 
-var helpers = {
+export var helpers = {
   isActive(current, active) {
     return current + 1 === parseInt(active) ? 'active' : '';
   }

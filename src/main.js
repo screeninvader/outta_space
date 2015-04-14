@@ -1,8 +1,8 @@
 import _ from 'underscore';
 import api from './api';
-import Playlist from './playlist';
+import Playlist from '../modules/playlist';
 import Controls from './controls';
-import Search from './search';
+import Search from '../modules/search';
 import notify from './notify';
 
 // we seem to need DOMContentLoaded here, because script tags,

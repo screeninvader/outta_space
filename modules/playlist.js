@@ -1,11 +1,37 @@
-import {loadTemplate, bindEvent} from './utils';
-import api from './api';
+import {loadTemplate, bindEvent, helpers} from '../src/utils';
+import api from '../src/api';
 import Sortable from 'sortablejs';
+import _ from 'underscore';
 
 class Playlist {
   constructor(selector) {
     this.el = document.querySelector(selector);
-    this.template = loadTemplate('#template-playlist');
+    this.template = this.underscoreTemplate();
+  }
+
+  underscoreTemplate() {
+    return (state) => {
+      state = state || {};
+      return _.template(`
+        <ul>
+          <% _.each(items, function(item, current) { %>
+            <li id="<%= current %>" data-id="<%= current %>"
+                class="<%= isActive(current, index) %>
+                       <%= oddEven(current) %>">
+              <div>
+                <a class="item" href="#<%= current %>"><%= item.title %></a>
+                <a class="remove">X</a>
+                <a class="expand">...</a>
+              </div>
+              <div class="expanded">
+                <a target="_blank" href="<%= item.source %>">Website</a>
+                <a href="<%= item.url %>">Download</a>
+              </div>
+            </li>
+          <% }); %>
+        </ul>
+      `)(_.extend(state, helpers));
+    }
   }
   render(state) {
     this.el.innerHTML = this.template(state.playlist);
