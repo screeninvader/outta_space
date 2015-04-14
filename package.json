@@ -3,15 +3,15 @@
   "version": "0.0.1",
   "description": "a web frontend for ScreenInvader",
   "dependencies": {
-    "screeninvader.js": "screeninvader/screeninvader.js",
-    "underscore": "~1.8.2",
     "humane-js": "wavded/humane-js",
-    "sortablejs": "1.1.1"
-    
+    "screeninvader.js": "screeninvader/screeninvader.js",
+    "sortablejs": "1.1.1",
+    "underscore": "~1.8.2"
   },
   "devDependencies": {
     "babelify": "~5.0.4",
     "browserify": "~9.0.3",
+    "less": "^2.5.0",
     "watchify": "~2.5.0"
   },
   "scripts": {
