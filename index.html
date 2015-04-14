@@ -13,11 +13,5 @@
       <div id="controls"></div>
     </header>
     <div id="playlist"></div>
-    <script id="template-controls" type="x-tmpl-underscore">
-      <% _.each(actions, function(action) { %>
-        <a href="#" id="<%= action %>" class="icon action"><%= action %></a>
-      <% }); %>
-      <input id="volume" type="range" min="0" max="100" value="<%= volume %>" />
-    </script>
   </body>
 </html>
