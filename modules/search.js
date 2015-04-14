@@ -1,7 +1,7 @@
 import _ from 'underscore';
-import {loadTemplate, fetchJSON, bindEvent, bindEvents} from './utils';
-import config from './config';
-import api from './api';
+import {fetchJSON, bindEvent, bindEvents, helpers} from '../src/utils';
+import config from '../src/config';
+import api from '../src/api';
 
 
 var searchProviders = {
@@ -52,10 +52,57 @@ var searchProviders = {
 class Search {
   constructor (selector) {
     var changeHandler = _.throttle(this.changeHandler, 300);
-    this.template = loadTemplate('#template-search');
-    this.resultsTemplate = loadTemplate('#template-search-results');
-    this.providersTemplate = loadTemplate('#template-search-providers');
     this.el = document.querySelector(selector);
+  }
+
+  template(state) {
+    state = state || {};
+    return _.template(`
+      <form>
+        <input id="search-url" 
+               type="text"
+               placeholder="Post something!">
+        <input id="search-submit" type="submit" value="Go!" disabled>
+      </form>
+      <div class="results"></div>
+    `)(_.extend(state, helpers));
+  }
+
+  resultsTemplate(state) {
+    state = state || {};
+    return _.template(`
+      <div id="search-results">
+        <div class="bar">
+          <a class="close" href="#">X</a>
+        </div>
+        <ul>
+          <% _.each(items, function(item) { %>
+            <li data-link="<%= item.url %>">
+              <a class ="item" href="#"><%= item.title %>
+                (<%= inMinutes(item.duration) %>)
+              </a>
+            </li>
+          <% }); %>
+        </ul>
+      </div>
+    `)(_.extend(state, helpers));
+  }
+  
+  providersTemplate(state) {
+    state = state || {};
+    return _.template(`
+      <p>Enter an URL directly or search interactively by entering a search
+       providers name or alias followed by your search terms.
+      "<code>yt Metalab</code>", for example, searches YouTube for
+      "Metalab". The following providers are available:</p>
+      <ul>
+        <% _.each(items, function(item) { %>
+          <li>
+            <%= item.name %> (<strong><%= item.alias %></strong>)
+          </li>
+        <% }); %>
+      </ul>
+    `)(_.extend(state, helpers));
   }
 
   render() {
