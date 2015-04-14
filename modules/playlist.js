@@ -11,6 +11,7 @@ class Playlist {
   template(state) {
     state = state || {};
     return _.template(`
+      <div class="bar"><span id="clear">clear playlist</span></div>
       <ul>
         <% _.each(items, function(item, current) { %>
           <li id="<%= current %>" data-id="<%= current %>"
@@ -37,6 +38,7 @@ class Playlist {
     bindEvent(this, '.item', 'click', this.clickHandler);
     bindEvent(this, '.remove', 'click', this.removeHandler);
     bindEvent(this, '.expand', 'click', this.expandHandler);
+    bindEvent(this, '#clear', 'click', this.clearHandler);
     var sort = Sortable.create(document.querySelector("#playlist ul"), {
       animation: 0, // ms, animation speed moving items when sorting, `0` — without animation
       handle: "ul", // Restricts sort start click/touch to the specified element
@@ -59,6 +61,9 @@ class Playlist {
       expanded.style.display = 'inline-block';
     else
       expanded.style.display = 'none';
+  }
+  clearHandler(ev) {
+    api.playlist.clear();
   }
 }
 
