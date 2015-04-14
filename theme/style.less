@@ -1,6 +1,9 @@
 @background: #121212;
+@background-light: #181818;
 @foreground: rgba(0, 128, 0, 1);
+@foreground-dark: rgba(0, 80, 0, 1);
 @border: @foreground;
+@border-color: #008000;
 @highlight: lighten(@foreground, 20%);
 
 @import "./font/vt323.css";
@@ -25,14 +28,18 @@ body, input {
   background-color: @background;
 }
 
+a {
+  cursor: pointer;
+}
+
 #playlist {
   .bar {
     text-align: right;
 
     span {
-    border: 0.1em dashed #008000;
+    border: 0.1em dashed ;
     background-color: #005000;
-    color: #121212;
+    color: @background;
     padding: 0.1em;
     cursor: pointer;
     width: 0%;
@@ -58,7 +65,7 @@ body, input {
     }
     .expanded {
       display: none;
-      background-color: #181818;
+      background-color: @background-light;
       font-size: 0.8em;
       a {
         color: @foreground;
@@ -70,6 +77,8 @@ body, input {
 }
 
 #search {
+  float: left;
+
   input {
     font-size: 2em;
     .border();
@@ -80,19 +89,19 @@ body, input {
 
   .bar {
   text-align: right;
-  background-color: #008000;
+  background-color: @border-color;
   margin-top: 10px;
   }
 
   .close {
   padding: 5px;
-  color: #121212;
+  color: @background;
   cursor: "pointer";
   }
 
   ul {
   height: 300px;
-  background-color: #181818;
+  background-color: @background-light;
   margin: 0;
   overflow-y: scroll;
   }

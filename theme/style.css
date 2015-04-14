@@ -14,11 +14,14 @@ input {
   color: #008000;
   background-color: #121212;
 }
+a {
+  cursor: pointer;
+}
 #playlist .bar {
   text-align: right;
 }
 #playlist .bar span {
-  border: 0.1em dashed #008000;
+  border: 0.1em dashed ;
   background-color: #005000;
   color: #121212;
   padding: 0.1em;
@@ -47,6 +50,9 @@ input {
   color: #008000;
   padding: 5px;
   margin: 0;
+}
+#search {
+  float: left;
 }
 #search input {
   font-size: 2em;
