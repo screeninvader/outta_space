@@ -3,7 +3,7 @@ import '../node_modules/babelify/node_modules/babel-core/browser-polyfill.js';
 import _ from 'underscore';
 import api from './api';
 import Playlist from './playlist';
-
+import Browser from './browser';
 import Controls from './controls';
 import Search from './search';
 import notify from './notify';
@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', ev => {
   var playlist = new Playlist('#playlist')
     , controls = new Controls('#controls')
     , search = new Search('#search')
+    , browser = new Browser('#browser')
     ;
 
   api.onError((error) => {
@@ -33,5 +34,6 @@ document.addEventListener('DOMContentLoaded', ev => {
     console.debug('Rerendering...');
     playlist.render(state);
     controls.render(state);
+    browser.render(state);
   });
 });

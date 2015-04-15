@@ -147,6 +147,44 @@ header {
   .next.icon::before { content: '>| '; }
   .rewind.icon::before { content: '<< '; }
   .forward.icon::before { content: '>> '; }
+
+}
+
+#browser {
+  .border();
+  top: 0.5em;
+  position:relative;
+  display:inline;
+  width:30%;
+  left:30%;
+  padding: 0.2em;
+
+  span {
+    background-color: @foreground;
+    color: @background;
+  }
+
+  .icon {
+    display: inline-block;
+    white-space: nowrap;
+    margin-right: 1em;
+  }
+  a {
+    text-decoration: none;
+    color: @foreground;
+    &:hover {
+      color: @highlight;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .close.icon::before { content: 'X '; }
+  .zoomIn.icon::before { content: '+ '; }
+  .zoomOut.icon::before { content: '- '; }
+  .pageDown.icon::before { content: '↧ '; }
+  .pageUp.icon::before { content: '↥ '; }
 }
 
 ul {
@@ -221,6 +259,11 @@ input[type=range] {
   }
 }
 
+.notify-bottom {
+  bottom: 0px;
+  top: 100%;
+  background-color: #ff0000;
+}
 
 @media all and (min-width: 800px ) {
   body {
@@ -245,3 +288,4 @@ input[type=range] {
     }
   }
 }
+
