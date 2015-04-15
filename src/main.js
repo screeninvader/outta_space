@@ -2,10 +2,10 @@ import '../node_modules/babelify/node_modules/babel-core/browser-polyfill.js';
 
 import _ from 'underscore';
 import api from './api';
-import Playlist from '../modules/playlist';
+import Playlist from './playlist';
 
-import Controls from '../modules/controls';
-import Search from '../modules/search';
+import Controls from './controls';
+import Search from './search';
 import notify from './notify';
 
 // we seem to need DOMContentLoaded here, because script tags,
@@ -14,11 +14,11 @@ import notify from './notify';
 document.addEventListener('DOMContentLoaded', ev => {
   var playlist = new Playlist('#playlist')
     , controls = new Controls('#controls')
-    , search = new Search('#search')
+    , search   = new Search('#search')
   ;
 
   api.onError((error) => {
-    notify.exception("Can't connect to ScreenInvader");
+    notify.exception('Can\'t connect to ScreenInvader');
   });
 
   // search.render is called here once for the initial search box and

@@ -18,7 +18,7 @@
     "watchify": "~2.5.0"
   },
   "scripts": {
-    "start": "./cli.sh"
+    "start": "./cli.sh build"
   },
   "repository": {
     "type": "git",

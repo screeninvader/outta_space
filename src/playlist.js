@@ -1,7 +1,7 @@
-import {bindEvent, helpers} from '../src/utils';
-import api from '../src/api';
-import Sortable from 'sortablejs';
 import _ from 'underscore';
+import Sortable from 'sortablejs';
+import {bindEvent, helpers} from './utils';
+import api from './api';
 
 class Playlist {
   constructor(selector) {
@@ -11,7 +11,6 @@ class Playlist {
   template(state) {
     state = state || {};
     return _.template(`
-      <div class="bar"><span id="clear">clear playlist</span></div>
       <ul>
         <% _.each(items, function(item, current) { %>
           <li id="<%= current %>" data-id="<%= current %>"
@@ -29,6 +28,7 @@ class Playlist {
           </li>
         <% }); %>
       </ul>
+      <div class="bar"><span id="clear">clear playlist</span></div>
     `)(_.extend(state, helpers));
   }
 
@@ -39,10 +39,10 @@ class Playlist {
     bindEvent(this, '.remove', 'click', this.removeHandler);
     bindEvent(this, '.expand', 'click', this.expandHandler);
     bindEvent(this, '#clear', 'click', this.clearHandler);
-    var sort = Sortable.create(document.querySelector("#playlist ul"), {
+    var sort = Sortable.create(document.querySelector('#playlist ul'), {
       animation: 0, // ms, animation speed moving items when sorting, `0` — without animation
-      handle: "ul", // Restricts sort start click/touch to the specified element
-      draggable: "li", // Specifies which items inside the element should be sortable
+      handle: 'ul', // Restricts sort start click/touch to the specified element
+      draggable: 'li', // Specifies which items inside the element should be sortable
       onUpdate: function (evt){
         api.playlist.shift(evt.oldIndex, evt.newIndex);
       }
@@ -56,7 +56,7 @@ class Playlist {
     api.playlist.remove(ev.target.parentNode.parentNode.getAttribute('data-id'));
   }
   expandHandler(ev) {
-    var expanded = ev.target.parentNode.parentNode.querySelector(".expanded");
+    var expanded = ev.target.parentNode.parentNode.querySelector('.expanded');
     if(expanded.style.display !== 'inline-block')
       expanded.style.display = 'inline-block';
     else

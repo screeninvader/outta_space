@@ -1,6 +1,6 @@
 import _ from 'underscore';
-import {bindEvent, helpers} from '../src/utils';
-import api from '../src/api';
+import {bindEvent, helpers} from './utils';
+import api from './api';
 
 class Controls {
   constructor(selector) {
@@ -31,6 +31,7 @@ class Controls {
   clickHandler(ev) {
     var playIndex  = _.indexOf(this.actions, 'play')
       , pauseIndex =  _.indexOf(this.actions, 'pause')
+    ;
     if ( playIndex > -1 ) {
       this.actions[playIndex] = 'pause';
     } else if ( pauseIndex > -1 ) {

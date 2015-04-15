@@ -1,7 +1,7 @@
 import _ from 'underscore';
-import {fetchJSON, bindEvent, bindEvents, helpers} from '../src/utils';
-import config from '../src/config';
-import api from '../src/api';
+import {fetchJSON, bindEvent, bindEvents, helpers} from './utils';
+import config from './config';
+import api from './api';
 
 
 var searchProviders = {
@@ -122,10 +122,10 @@ class Search {
   renderResults(json) {
     this.results.innerHTML = this.resultsTemplate(json);
     bindEvent(this, '.results .item', 'click', this.clickHandler);
-    bindEvents(this, "#search-results .close", {
-      "click": ev => { this.emptyResults(); }
+    bindEvents(this, '#search-results .close', {
+      'click': ev => { this.emptyResults(); }
     });
-    document.addEventListener("keydown", ev => {
+    document.addEventListener('keydown', ev => {
       if(ev.keyCode == 27) {
         this.emptyResults();
       }
