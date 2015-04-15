@@ -4,6 +4,7 @@
   "description": "a web frontend for ScreenInvader",
   "dependencies": {
     "humane-js": "wavded/humane-js",
+    "screeninvader-theme-default": "git://github.com/screeninvader/screeninvader-theme-default",
     "screeninvader.js": "screeninvader/screeninvader.js",
     "sortablejs": "1.1.1",
     "underscore": "~1.8.2"
@@ -11,11 +12,13 @@
   "devDependencies": {
     "babelify": "~5.0.4",
     "browserify": "~9.0.3",
+    "html-inline": "^1.1.1",
+    "jshint": "^2.7.0",
     "less": "^2.5.0",
     "watchify": "~2.5.0"
   },
   "scripts": {
-    "start": "watchify -d  src/main.js -t babelify -o bundle.js"
+    "start": "./cli.sh"
   },
   "repository": {
     "type": "git",
