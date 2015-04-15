@@ -54,18 +54,18 @@ class Search {
     var changeHandler = _.throttle(this.changeHandler, 300);
     this.el = document.querySelector(selector);
 
-    document.addEventListener("keyup", ev => {
+    document.addEventListener('keyup', ev => {
       if(ev.keyCode === 27) { //esc key
         let searchInput = document.querySelector('#search-url');
         searchInput.innerHTML = '';
         searchInput.blur();
         this.emptyResults();
       } else if(ev.keyCode === 70 ) { //f key
-        this.toggleFocus('')
+        this.toggleFocus('');
       } else if(ev.keyCode === 89 ) { //y key
-        this.toggleFocus('yt')
+        this.toggleFocus('yt');
       } else if(ev.keyCode === 83 ) { //s key
-        this.toggleFocus('sc')
+        this.toggleFocus('sc');
       }
     });
   }
