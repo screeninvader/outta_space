@@ -1,4 +1,4 @@
-import "babel/polyfill";
+import '../node_modules/babelify/node_modules/babel-core/browser-polyfill.js';
 
 import _ from 'underscore';
 import api from './api';
