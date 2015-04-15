@@ -1,4 +1,4 @@
-import "babel/polyfill";
+import '../node_modules/babelify/node_modules/babel-core/browser-polyfill.js';
 
 import _ from 'underscore';
 import api from './api';
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', ev => {
   var playlist = new Playlist('#playlist')
     , controls = new Controls('#controls')
     , search = new Search('#search')
-    ;
+  ;
 
   api.onError((error) => {
     notify.exception("Can't connect to ScreenInvader");
