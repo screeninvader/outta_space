@@ -19,8 +19,8 @@ class Notify {
 }
 
 var notify = new Notify();
-api.subscribe("notifySend", notify.normal);
-api.subscribe("notifyLong", notify.long);
-api.subscribe("notifyException", notify.exception);
+api.subscribe('notifySend', notify.normal);
+api.subscribe('notifyLong', notify.long);
+api.subscribe('notifyException', notify.exception);
 
 export default notify;
