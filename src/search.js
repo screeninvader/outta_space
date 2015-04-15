@@ -53,6 +53,12 @@ class Search {
   constructor (selector) {
     var changeHandler = _.throttle(this.changeHandler, 300);
     this.el = document.querySelector(selector);
+
+    document.addEventListener("keydown", ev => {
+      if(ev.keyCode == 27) {
+        this.emptyResults();
+      }
+    });
   }
 
   template(state) {
@@ -124,11 +130,6 @@ class Search {
     bindEvent(this, '.results .item', 'click', this.clickHandler);
     bindEvents(this, "#search-results .close", {
       "click": ev => { this.emptyResults(); }
-    });
-    document.addEventListener("keydown", ev => {
-      if(ev.keyCode == 27) {
-        this.emptyResults();
-      }
     });
   }
 
