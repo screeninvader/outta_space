@@ -1,7 +1,7 @@
 import _ from 'underscore';
-import {fetchJSON, bindEvent, bindEvents, helpers} from '../src/utils';
-import config from '../src/config';
-import api from '../src/api';
+import {fetchJSON, bindEvent, bindEvents, helpers} from './utils';
+import config from './config';
+import api from './api';
 
 
 var searchProviders = {

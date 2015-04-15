@@ -2,10 +2,10 @@ import '../node_modules/babelify/node_modules/babel-core/browser-polyfill.js';
 
 import _ from 'underscore';
 import api from './api';
-import Playlist from '../modules/playlist';
+import Playlist from './playlist';
 
-import Controls from '../modules/controls';
-import Search from '../modules/search';
+import Controls from './controls';
+import Search from './search';
 import notify from './notify';
 
 // we seem to need DOMContentLoaded here, because script tags,

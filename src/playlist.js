@@ -1,7 +1,7 @@
-import {bindEvent, helpers} from '../src/utils';
-import api from '../src/api';
-import Sortable from 'sortablejs';
 import _ from 'underscore';
+import Sortable from 'sortablejs';
+import {bindEvent, helpers} from './utils';
+import api from './api';
 
 class Playlist {
   constructor(selector) {
@@ -11,7 +11,6 @@ class Playlist {
   template(state) {
     state = state || {};
     return _.template(`
-      <div class="bar"><span id="clear">clear playlist</span></div>
       <ul>
         <% _.each(items, function(item, current) { %>
           <li id="<%= current %>" data-id="<%= current %>"
@@ -29,6 +28,7 @@ class Playlist {
           </li>
         <% }); %>
       </ul>
+      <div class="bar"><span id="clear">clear playlist</span></div>
     `)(_.extend(state, helpers));
   }
 

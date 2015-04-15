@@ -1,6 +1,6 @@
 import _ from 'underscore';
-import {bindEvent, helpers} from '../src/utils';
-import api from '../src/api';
+import {bindEvent, helpers} from './utils';
+import api from './api';
 
 class Controls {
   constructor(selector) {
