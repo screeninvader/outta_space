@@ -31,7 +31,7 @@ var searchProviders = {
     name: 'SoundCloud'
   , alias: 'sc'
   , search: (term) => {
-      return fetchJSON('http://api.soundcloud.com/tracks.json', {
+      return fetchJSON('https://api.soundcloud.com/tracks.json', {
         'client_id': config.soundcloudClientId
       , 'q': term
       }).then((json) => {
