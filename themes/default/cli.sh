@@ -13,6 +13,8 @@ lessc ${THEME_DIR}style.less ${OUT_DIR}style.css
 echo "cp ${THEME_DIR}index.html ${OUT_DIR}index.html"
 cp -r \
   ${THEME_DIR}index.html \
+  ${THEME_DIR}screeninvader-logo.png \
+  ${THEME_DIR}favicon.ico \
   ${OUT_DIR} \
 ;
 
