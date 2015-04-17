@@ -1,0 +1,30 @@
+{
+  "name": "screeninvader-theme-default",
+  "version": "0.0.1",
+  "description": "screeninvader default theme'",
+
+  "author": "Metalab <metalab@lists.metalab.at>",
+  "license": "AGPL",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/screeninvader/screeninvader-theme-default"
+  },
+  "contributors": [
+    {
+      "name": "phaer",
+      "github": "phaer"
+    },
+    {
+      "name": "jascha ehrenreich",
+      "email": "jascha@jaeh.at",
+      "github": "jaeh"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/screeninvader/screeninvader-theme-default/issues"
+  },
+  "homepage": "https://github.com/screeninvader/screeninvader-theme-default"
+}
