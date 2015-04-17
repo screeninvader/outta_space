@@ -23,13 +23,13 @@ class Browser {
   }
 
   render(state) {
-    if(state.browser.active == "true") {
+    if(state.browser.active == 'true') {
       var temp = this.template(state);
       this.el.innerHTML = temp;
-      this.el.style.display = "";
+      this.el.style.display = '';
       bindEvent(this, 'a.action', 'click', this.clickHandler);
     } else
-      this.el.style.display = "none";
+      this.el.style.display = 'none';
   }
 
   clickHandler(ev) {
