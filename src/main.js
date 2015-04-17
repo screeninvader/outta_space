@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', ev => {
   var playlist = new Playlist('#playlist')
     , controls = new Controls('#controls')
     , search   = new Search('#search')
-    , search   = new Search('#search')
     , browser  = new Browser('#browser')
   ;
 
