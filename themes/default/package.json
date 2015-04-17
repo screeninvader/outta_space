@@ -1,8 +1,7 @@
 {
   "name": "screeninvader-theme-default",
   "version": "0.0.1",
-  "description": "screeninvader default theme'",
-
+  "description": "screeninvader default theme",
   "author": "Metalab <metalab@lists.metalab.at>",
   "license": "AGPL",
   "scripts": {
@@ -26,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/screeninvader/screeninvader-theme-default/issues"
   },
-  "homepage": "https://github.com/screeninvader/screeninvader-theme-default"
+  "homepage": "https://github.com/screeninvader/screeninvader-theme-default",
+  "dependencies": {
+    "less": "^2.5.0"
+  }
 }
