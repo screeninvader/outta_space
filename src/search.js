@@ -9,7 +9,7 @@ var searchProviders = {
     name: 'YouTube'
   , alias: 'yt'
   , search: (term) => {
-      return fetchJSON('http://gdata.youtube.com/feeds/api/videos', {
+      return fetchJSON('https://gdata.youtube.com/feeds/api/videos', {
         'type': 'video'
       , 'max-results': 25
       , 'alt': 'json'
