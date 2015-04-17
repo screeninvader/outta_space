@@ -11,6 +11,11 @@ function build() {
     -exec {} build \;\
   ;
 
+  echo 'cli.sh build the themes in themes/'
+  find themes/ -type f -name cli.sh \
+    -exec {} build \;\
+  ;
+
   echo "ln -s ./bundled/default.html ./bundled/index.html"
   cd bundled/
   ln -sf default.html index.html
