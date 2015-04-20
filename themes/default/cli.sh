@@ -39,3 +39,9 @@ function build() {
   ;
 }
 
+if [ $1 ]
+then
+  function=$1
+  shift
+  $function $@
+fi
