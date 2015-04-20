@@ -3,7 +3,7 @@
 function setup() {
   npm install;
 
-  echo 'cli.sh install theme dependencies in themes/'
+  echo "cli.sh install theme dependencies in themes/"
   find themes/ -type f -name cli.sh \
     -exec {} install \;\
   ;
@@ -15,12 +15,12 @@ function build() {
     src/ \
   ;
 
-  echo 'cli.sh build the themes in node_modules'
+  echo "cli.sh build the themes in node_modules"
   find node_modules/ -type f -name cli.sh \
     -exec {} build \;\
   ;
 
-  echo 'cli.sh build the themes in themes/'
+  echo "cli.sh build the themes in themes/"
   find themes/ -type f -name cli.sh \
     -exec {} build \;\
   ;
