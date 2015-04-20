@@ -180,11 +180,14 @@ class Search {
     ev.preventDefault();
     if (this.input.value.startsWith('http')) {
       api.showUrl(this.input.value);
+      this.input.value = '';
     }
   }
 
   blurHandler(ev) {
-     this.input.value = '';
+    if(! ev.relatedTarget || ev.relatedTarget.type !== "submit"){
+      this.input.value = '';
+    }
   }
 
   clickHandler(ev) {
