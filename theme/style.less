@@ -12,8 +12,13 @@
   border: 0.1em dashed @color;
 }
 
+a {
+  color: @foreground;
+}
 .blink {
     animation: blinker 1.7s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+    background-color: @foreground;
+    color: @background;
 }
 
 @keyframes blinker {
@@ -111,8 +116,6 @@ header {
   padding: 0.2em;
   margin-top: 1em;
   .shairport {
-    background-color: @foreground;
-    color: @background;
     padding: 0.2em;
     width: 200%;
  }
@@ -152,7 +155,6 @@ header {
   display: inline-block;
   text-align: center;
   margin: 1em 0 0;
-
   .icon {
     display: inline-block;
     white-space: nowrap;
@@ -160,7 +162,6 @@ header {
   }
   a {
     text-decoration: none;
-    color: @foreground;
     &:hover { 
       color: @highlight; 
     }

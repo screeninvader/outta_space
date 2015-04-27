@@ -22,20 +22,28 @@ class Controls {
   }
 
   render(state) {
+    var playIndex  = _.indexOf(this.actions, 'play')
+      , pauseIndex =  _.indexOf(this.actions, 'pause');
+
+    var index = playIndex == -1 ? pauseIndex : playIndex;
+    if (state.player.paused == "true" ) {
+      this.actions[index] = 'play';
+    } else {
+      this.actions[index] = 'pause';
+    }
+
     var temp = this.template(state);
     this.el.innerHTML = temp;
+
+    if(state.player.paused == "true") {
+      this.el.querySelector('#play').classList.add("blink");
+    }
+
     bindEvent(this, 'a.action', 'click', this.clickHandler);
     bindEvent(this, '#volume', 'change', this.volumeHandler);
   }
 
   clickHandler(ev) {
-    var playIndex  = _.indexOf(this.actions, 'play')
-      , pauseIndex =  _.indexOf(this.actions, 'pause')
-    if ( playIndex > -1 ) {
-      this.actions[playIndex] = 'pause';
-    } else if ( pauseIndex > -1 ) {
-      this.actions[pauseIndex] = 'play';
-    }
     api.player[ev.target.id]();
   }
 
