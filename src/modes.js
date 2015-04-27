@@ -11,7 +11,7 @@ class Modes {
     state = state || {};
 
     return _.template(`
-      <span class="shairport">Shairport</span>
+      <a class="shairport">Shairport</a>
     `)(_.extend(state, helpers));
   }
 
@@ -21,12 +21,12 @@ class Modes {
     var stat = this.el.querySelector('.shairport');
     if(state.shairport.active == 'true') {
       stat.classList.add("blink")
-      bindEvent(this, 'span', 'click', function(ev) {
+      bindEvent(this, '.shairport', 'click', function(ev) {
         api.shairport["stop"]();
       });
     } else {
       stat.classList.remove("blink")
-      bindEvent(this, 'span', 'click', function(ev) {
+      bindEvent(this, '.shairport', 'click', function(ev) {
         api.shairport["start"]();
       });
     }
