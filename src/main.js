@@ -6,7 +6,7 @@ import Playlist from './playlist';
 import Browser from './browser';
 import Controls from './controls';
 import Search from './search';
-import Shairport from './shairport';
+import Modes from './modes';
 import notify from './notify';
 
 // we seem to need DOMContentLoaded here, because script tags,
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', ev => {
     , controls = new Controls('#controls')
     , search = new Search('#search')
     , browser = new Browser('#browser')
-    , shairport = new Shairport('#shairport')
+    , modes = new Modes('#modes')
     ;
 
   api.onError((error) => {
@@ -37,6 +37,6 @@ document.addEventListener('DOMContentLoaded', ev => {
     playlist.render(state);
     controls.render(state);
     browser.render(state);
-    shairport.render(state);
+    modes.render(state);
   });
 });

@@ -12,6 +12,15 @@
   border: 0.1em dashed @color;
 }
 
+.blink {
+    animation: blinker 1.7s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+}
+
+@keyframes blinker {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
 html, body {
   margin: 0.5em;
 }
@@ -97,20 +106,16 @@ header {
   }
 }
 
-.blink {
-    animation: blinker 1.7s cubic-bezier(.5, 0, 1, 1) infinite alternate;
-}
-
-@keyframes blinker {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-#shairport {
+#modes {
   .border();
   padding: 0.2em;
   margin-top: 1em;
-  display: inline;
+  .shairport {
+    background-color: @foreground;
+    color: @background;
+    padding: 0.2em;
+    width: 200%;
+ }
 }
 
 #search {
