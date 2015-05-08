@@ -5,29 +5,7 @@ import api from './api';
 
 
 var searchProviders = {
-  youtube: {
-    name: 'YouTube'
-  , alias: 'yt'
-  , search: (term) => {
-      return fetchJSON('https://gdata.youtube.com/feeds/api/videos', {
-        'type': 'video'
-      , 'max-results': 25
-      , 'alt': 'json'
-      , 'q': term
-      }).then((json) => {
-        return {
-          items: _.map(json.feed.entry, (entry) => {
-            return {
-              title: entry.title.$t
-            , url: entry.media$group.media$player[0].url
-            , duration: entry.media$group.yt$duration.seconds
-            };
-          })
-        };
-      });
-    }
-  }
-, soundcloud: {
+  soundcloud: {
     name: 'SoundCloud'
   , alias: 'sc'
   , search: (term) => {
@@ -62,14 +40,12 @@ class Search {
         this.emptyResults();
       } else if(ev.keyCode === 70 ) { //f key
         this.toggleFocus('');
-      } else if(ev.keyCode === 89 ) { //y key
-        this.toggleFocus('yt');
       } else if(ev.keyCode === 83 ) { //s key
         this.toggleFocus('sc');
       }
     });
   }
-  
+
   toggleFocus(provider) {
     var searchInput = document.querySelector('#search-url')
       , activeEle   = document.activeElement
@@ -86,26 +62,26 @@ class Search {
     state = state || {};
     return _.template(`
       <form>
-        <input id="search-url" 
-               type="text"
-               placeholder="Post something!">
-        <input id="search-submit" type="submit" value="Go!" disabled>
+        <input id='search-url' 
+               type='text'
+               placeholder='Post something!'>
+        <input id='search-submit' type='submit' value='Go!' disabled>
       </form>
-      <div class="results"></div>
+      <div class='results'></div>
     `)(_.extend(state, helpers));
   }
 
   resultsTemplate(state) {
     state = state || {};
     return _.template(`
-      <div id="search-results">
-        <div class="bar">
-          <a class="close" href="#">X</a>
+      <div id='search-results'>
+        <div class='bar'>
+          <a class='close' href='#'>X</a>
         </div>
         <ul>
           <% _.each(items, function(item) { %>
-            <li data-link="<%= item.url %>">
-              <a class ="item" href="#"><%= item.title %>
+            <li data-link='<%= item.url %>'>
+              <a class ='item' href='#'><%= item.title %>
                 (<%= inMinutes(item.duration) %>)
               </a>
             </li>
@@ -120,8 +96,8 @@ class Search {
     return _.template(`
       <p>Enter an URL directly or search interactively by entering a search
        providers name or alias followed by your search terms.
-      "<code>yt Metalab</code>", for example, searches YouTube for
-      "Metalab". The following providers are available:</p>
+      '<code>sc Alec Empire 30c3</code>', for example, searches Soundcloud for
+      'Alec Empire 30c3'. The following providers are available:</p>
       <ul>
         <% _.each(items, function(item) { %>
           <li>
@@ -185,7 +161,7 @@ class Search {
   }
 
   blurHandler(ev) {
-    if(! ev.relatedTarget || ev.relatedTarget.type !== "submit"){
+    if(! ev.relatedTarget || ev.relatedTarget.type !== 'submit'){
       this.input.value = '';
     }
   }
