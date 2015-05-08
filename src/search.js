@@ -86,26 +86,26 @@ class Search {
     state = state || {};
     return _.template(`
       <form>
-        <input id="search-url" 
-               type="text"
-               placeholder="Post something!">
-        <input id="search-submit" type="submit" value="Go!" disabled>
+        <input id='search-url' 
+               type='text'
+               placeholder='Post something!'>
+        <input id='search-submit' type='submit' value='Go!' disabled>
       </form>
-      <div class="results"></div>
+      <div class='results'></div>
     `)(_.extend(state, helpers));
   }
 
   resultsTemplate(state) {
     state = state || {};
     return _.template(`
-      <div id="search-results">
-        <div class="bar">
-          <a class="close" href="#">X</a>
+      <div id='search-results'>
+        <div class='bar'>
+          <a class='close' href='#'>X</a>
         </div>
         <ul>
           <% _.each(items, function(item) { %>
-            <li data-link="<%= item.url %>">
-              <a class ="item" href="#"><%= item.title %>
+            <li data-link='<%= item.url %>'>
+              <a class ='item' href='#'><%= item.title %>
                 (<%= inMinutes(item.duration) %>)
               </a>
             </li>
@@ -120,8 +120,8 @@ class Search {
     return _.template(`
       <p>Enter an URL directly or search interactively by entering a search
        providers name or alias followed by your search terms.
-      "<code>yt Metalab</code>", for example, searches YouTube for
-      "Metalab". The following providers are available:</p>
+      '<code>yt Metalab</code>', for example, searches YouTube for
+      'Metalab'. The following providers are available:</p>
       <ul>
         <% _.each(items, function(item) { %>
           <li>
@@ -185,7 +185,7 @@ class Search {
   }
 
   blurHandler(ev) {
-    if(! ev.relatedTarget || ev.relatedTarget.type !== "submit"){
+    if(! ev.relatedTarget || ev.relatedTarget.type !== 'submit'){
       this.input.value = '';
     }
   }
