@@ -9,18 +9,19 @@ var searchProviders = {
     name: 'YouTube'
   , alias: 'yt'
   , search: (term) => {
-      return fetchJSON('https://gdata.youtube.com/feeds/api/videos', {
+      return fetchJSON('https://www.googleapis.com/youtube/v3/search', {
         'type': 'video'
-      , 'max-results': 25
-      , 'alt': 'json'
+      , 'part': 'id,snippet'
+      , 'maxResults': 25
       , 'q': term
+      , 'key': config.googleAPIKey
       }).then((json) => {
         return {
-          items: _.map(json.feed.entry, (entry) => {
+          items: _.map(json.items, (entry) => {
             return {
-              title: entry.title.$t
-            , url: entry.media$group.media$player[0].url
-            , duration: entry.media$group.yt$duration.seconds
+              title: entry.snippet.title
+            , url: 'https://www.youtube.com/watch?v='+entry.id.videoId
+            , duration: "N/A"
             };
           })
         };
