@@ -28,7 +28,11 @@ class Playlist {
           </li>
         <% }); %>
       </ul>
-      <div class="bar"><span id="clear">clear playlist</span></div>
+      <div class="bar">
+        <span id="clear">clear playlist</span>
+        <a href="" id="export" alt="save the playlist to txt" download="playlist.txt" >export playlist</a>
+      </div>
+
     `)(_.extend(state, helpers));
   }
 
@@ -39,6 +43,7 @@ class Playlist {
     bindEvent(this, '.remove', 'click', this.removeHandler);
     bindEvent(this, '.expand', 'click', this.expandHandler);
     bindEvent(this, '#clear', 'click', this.clearHandler);
+    bindEvent(this, '#export', 'click', this.exportHandler);
     var sort = Sortable.create(document.querySelector("#playlist ul"), {
       animation: 0, // ms, animation speed moving items when sorting, `0` — without animation
       handle: "ul", // Restricts sort start click/touch to the specified element
@@ -65,6 +70,11 @@ class Playlist {
   clearHandler(ev) {
     api.playlist.clear();
   }
+  exportHandler(ev) {
+    ev.target.href = 'data:text/plain;charset=utf-8,'
+          + encodeURIComponent(JSON.stringify(api.state.playlist.items));
+  }
+
 }
 
 export default Playlist;
