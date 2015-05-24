@@ -69,6 +69,8 @@ class Search {
         this.toggleFocus('sc');
       }
     });
+
+    this.doSearch = _.debounce(this.doSearchDebounced.bind(this), config.searchDebounceWait);
   }
   
   toggleFocus(provider) {
@@ -196,7 +198,7 @@ class Search {
     api.showUrl(ev.target.parentNode.getAttribute('data-link'));
   }
 
-  doSearch(query) {
+  doSearchDebounced(query) {
     let queryWords = query.split(' ')
       , providerAlias = _.first(queryWords)
       , terms = _.rest(queryWords).join(' ')
