@@ -97,6 +97,7 @@ header {
       .remove {
         float: right;
       }
+
     }
     .expanded {
       display: none;
@@ -246,8 +247,11 @@ ul {
         background-color: @highlight;
       }
     }
+    &.sortable-ghost {
+      background-color: @foreground;
+    }
 
-    &.active a {
+    &.active a, &.sortable-ghost a {
       color: @background;
     }
   }
