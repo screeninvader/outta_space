@@ -31,12 +31,12 @@ document.addEventListener('DOMContentLoaded', ev => {
     search.render();
   });
 
-  api.onReceive((state) => {
+  api.onReceive(_.debounce((state) => {
     renderOnce();
     console.debug('Rerendering...');
     playlist.render(state);
     controls.render(state);
     browser.render(state);
     modes.render(state);
-  });
+  }, 200));
 });
