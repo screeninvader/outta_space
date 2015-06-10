@@ -169,7 +169,7 @@ class Search {
     let term = ev.target.value;
     this.submit.disabled = true;
     if (term.length > 0) {
-      if (term.startsWith('http')) {
+      if (term.startsWith('http') || term.startsWith("rtmp")) {
         this.submit.disabled = false;
       } else {
         this.doSearch(term);
@@ -181,7 +181,7 @@ class Search {
 
   submitHandler(ev) {
     ev.preventDefault();
-    if (this.input.value.startsWith('http')) {
+    if (this.input.value.startsWith('http') || this.input.value.startsWith('rtmp')) {
       api.showUrl(this.input.value);
       this.input.value = '';
     }
