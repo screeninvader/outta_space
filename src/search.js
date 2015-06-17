@@ -5,48 +5,49 @@ import api from './api';
 
 
 var searchProviders = {
-  youtube: {
-    name: 'YouTube'
-  , alias: 'yt'
+  video: {
+    name: 'Video'
+  , alias: 'v'
   , search: (term) => {
-      return fetchJSON('https://www.googleapis.com/youtube/v3/search', {
-        'type': 'video'
-      , 'part': 'id,snippet'
-      , 'maxResults': 25
+      return fetchJSON('http://' + window.location.host + '/searx/', {
+        'categories': 'videos'
+      , 'format': 'json'
       , 'q': term
-      , 'key': config.googleAPIKey
       }).then((json) => {
         return {
-          items: _.map(json.items, (entry) => {
+          items: _.map(json.results, (entry) => {
             return {
-              title: entry.snippet.title
-            , url: 'https://www.youtube.com/watch?v='+entry.id.videoId
-            , duration: "N/A"
+              title: entry.title
+            , url: entry.url
+            , thumbnail: entry.thumbnail
+            , content: entry.content
             };
           })
         };
       });
     }
   }
-, soundcloud: {
-    name: 'SoundCloud'
-  , alias: 'sc'
+, music: {
+    name: 'Music'
+  , alias: 'm'
   , search: (term) => {
-      return fetchJSON('https://api.soundcloud.com/tracks.json', {
-        'client_id': config.soundcloudClientId
+      return fetchJSON('http://' + window.location.host + '/searx/', {
+        'categories': 'music'
+      , 'format': 'json'
       , 'q': term
       }).then((json) => {
-        return {
-          items: _.map(_.take(json, 7), (entry) => {
-            return {
+        return { 
+          items: _.map(json.results, (entry) => {
+            return { 
               title: entry.title
-            , url: entry.uri
-            , duration: entry.duration
+            , url: entry.url
+            , thumbnail: entry.thumbnail
+            , content: entry.content
             };
           })
         };
       });
-    }
+    } 
   }
 };
 
@@ -108,9 +109,10 @@ class Search {
         <ul>
           <% _.each(items, function(item) { %>
             <li data-link="<%= item.url %>">
-              <a class ="item" href="#"><%= item.title %>
-                (<%= inMinutes(item.duration) %>)
+              <a class ="item" href="#">
+                <%= item.title %>
               </a>
+             <%= item.content %><img width="140px" src="<%= item.thumbnail %>" alt="thumbnail">
             </li>
           <% }); %>
         </ul>
@@ -123,7 +125,7 @@ class Search {
     return _.template(`
       <p>Enter an URL directly or search interactively by entering a search
        providers name or alias followed by your search terms.
-      "<code>yt Metalab</code>", for example, searches YouTube for
+      "<code>v Metalab</code>", for example, searches for
       "Metalab". The following providers are available:</p>
       <ul>
         <% _.each(items, function(item) { %>
