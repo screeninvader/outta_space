@@ -112,7 +112,7 @@ class Search {
               <a class ="item" href="#">
                 <%= item.title %>
               </a>
-             <%= item.content %><img width="140px" src="<%= item.thumbnail %>" alt="thumbnail">
+             <div><img width="140px" src="<%= item.thumbnail %>" alt="thumbnail"><%= item.content %></div>
             </li>
           <% }); %>
         </ul>

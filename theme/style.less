@@ -1,5 +1,6 @@
 @background: #121212;
-@background-light: #181818;
+@background-light: lighten(@background, 10%);
+@background-lighter: lighten(@background, 25%);
 @foreground: rgba(0, 128, 0, 1);
 @foreground-dark: rgba(0, 80, 0, 1);
 @border: @foreground;
@@ -145,12 +146,26 @@ header {
     cursor: "pointer";
   }
 
+  
   ul {
-    height: 300px;
-    background-color: @background-light;
+    height: 400px;
+    background-color: @background;
     margin: 0;
     overflow-y: scroll;
   }
+
+  li  {
+    display: block;
+    text-align: left;
+    a {
+      background-color: @background-light;
+    }
+    div {
+      display: inline
+    }
+  }
+
+  
 }
 
 #controls {
