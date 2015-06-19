@@ -18,7 +18,7 @@ var searchProviders = {
           items: _.map(json.results, (entry) => {
             return {
               title: entry.title
-            , url: entry.url
+            , url: entry.magnetlink ? entry.magnetlink : entry.url
             , thumbnail: entry.thumbnail
             , content: entry.content
             };
@@ -64,10 +64,6 @@ class Search {
         this.emptyResults();
       } else if(ev.keyCode === 70 ) { //f key
         this.toggleFocus('');
-      } else if(ev.keyCode === 89 ) { //y key
-        this.toggleFocus('yt');
-      } else if(ev.keyCode === 83 ) { //s key
-        this.toggleFocus('sc');
       }
     });
 
@@ -171,7 +167,7 @@ class Search {
     let term = ev.target.value;
     this.submit.disabled = true;
     if (term.length > 0) {
-      if (term.startsWith('http') || term.startsWith("rtmp")) {
+      if (term.startsWith('http') || term.startsWith("rtmp") || term.startsWith("magnet")) {
         this.submit.disabled = false;
       } else {
         this.doSearch(term);
@@ -183,7 +179,7 @@ class Search {
 
   submitHandler(ev) {
     ev.preventDefault();
-    if (this.input.value.startsWith('http') || this.input.value.startsWith('rtmp')) {
+    if (this.input.value.startsWith('http') || this.input.value.startsWith('rtmp') || this.input.value.startsWith('magnet')) {
       api.showUrl(this.input.value);
       this.input.value = '';
     }
