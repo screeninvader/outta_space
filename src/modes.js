@@ -12,6 +12,7 @@ class Modes {
 
     return _.template(`
       <a class="shairport">Shairport</a>
+      <a class="torrents">Torrents</a>
     `)(_.extend(state, helpers));
   }
 
@@ -30,6 +31,22 @@ class Modes {
         api.shairport["start"]();
       });
     }
+
+    stat = this.el.querySelector('.torrents');
+    if(state.peerflix.active == 'true') {
+      stat.classList.add("blink")
+    } else {
+      stat.classList.remove("blink")
+    }
+
+    bindEvent(this, '.torrents', 'click', function(ev) {
+      var pfElem = document.querySelector('#peerflix');
+      if(pfElem.style.visibility == 'hidden' || pfElem.style.visibility == '') {
+        pfElem.style.visibility = 'visible';
+      } else {
+        pfElem.style.visibility = 'hidden';
+      }
+    });
   }
 }
 

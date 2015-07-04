@@ -40,7 +40,7 @@ var searchProviders = {
           items: _.map(json.results, (entry) => {
             return { 
               title: entry.title
-            , url: entry.url
+            , url: entry.magnetlink ? entry.magnetlink : entry.url
             , thumbnail: entry.thumbnail
             , content: entry.content
             };

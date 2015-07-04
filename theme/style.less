@@ -122,6 +122,11 @@ header {
     padding: 0.2em;
     width: 200%;
  }
+
+  .peerflix {
+    padding: 0.2em;
+    width: 200%;
+ }
 }
 
 #search {
@@ -237,6 +242,44 @@ header {
   .pageUp.icon::before { content: '↥ '; }
 }
 
+#peerflix {
+  background-color: rgba(127,127,127,0.5);
+  visibility: hidden;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width:100%;
+  height:100%;
+  text-align:left;
+  z-index: 1000;
+
+  .header {
+    text-align:center;
+    background-color: @background-light;
+  }
+
+  .close {
+    margin-left:auto;
+    margin-right:0;
+    float:right;
+  }
+
+  .torrents {
+    .border();
+    background-color: rgba(255,255,255,1);
+    text-align:left;
+    width:600px;
+    height:480px;
+    position:fixed; /*it can be fixed too*/
+    left:0; right:0;
+    top:100px; bottom:0;
+    margin:auto;
+    max-width:100%;
+    max-height:100%;
+    overflow:auto;
+  }
+}
+
 ul {
   .border();
   list-style-type: none;
@@ -317,6 +360,12 @@ input[type=range] {
   bottom: 0px;
   top: 100%;
   background-color: #ff0000;
+}
+
+.container {
+  position: fixed;
+  top: 30px;
+  right: 5px;
 }
 
 @media all and (min-width: 800px ) {
