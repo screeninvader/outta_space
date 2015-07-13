@@ -45,7 +45,7 @@ class Peerflix {
   }
 
   render() {
-    fetchJSON('http://' + window.location.host + '/peerflix/torrents', {}).then(function(json) { return { items: json } }).catch(err => { alert(err); return { items: "" } }).then(this.setHTML.bind(this));
+    fetchJSON('http://' + window.location.host + '/peerflix/torrents', {}).then(function(json) { return { items: json } }).catch(err => { return { items: "" } }).then(this.setHTML.bind(this));
 
 /*    bindEvent(this, '.expand', 'click', this.expandHandler);
     bindEvent(this, '#clear', 'click', this.clearHandler);
