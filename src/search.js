@@ -3,7 +3,7 @@ import {fetchJSON, bindEvent, bindEvents, helpers} from './utils';
 import config from './config';
 import api from './api';
 
-
+var searchTimeout;
 var searchProviders = {
   video: {
     name: 'Video'
@@ -213,10 +213,15 @@ class Search {
     }
 
     if (matchingProviders.length === 1 && terms.length > 0) {
+      if (searchTimeout !== 'undefined'){
+      	clearTimeout(searchTimeout);
+      }
       console.log('terms', terms);
-      _.first(matchingProviders)
-        .search(terms)
-        .then(this.renderResults.bind(this));
+      searchTimeout = setTimeout(function(){
+	      _.first(matchingProviders)
+	        .search(terms)
+	        .then(this.renderResults.bind(this));
+	    }, 2000)
     }
   }
 }
