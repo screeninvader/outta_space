@@ -207,7 +207,7 @@ class Search {
 
   doSearchDebounced(query) {
     let queryWords = query.split(' ')
-      , providerAlias = _.first(queryWords)
+      , providerAlias = _.first(queryWords).toLowerCase()
       , terms = _.rest(queryWords).join(' ')
     ;
     console.log('alias, terms', providerAlias, terms);
