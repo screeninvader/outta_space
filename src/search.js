@@ -169,12 +169,16 @@ class Search {
     if (term.length > 0) {
       if (term.startsWith('https://open.spotify.com') && term.indexOf('track') !== -1) {
         fetchJSON('https://api.spotify.com/v1/tracks/' + term.split('/track/')[1]).then((json) => {
-          term = 'v ' + json.name;
-          json.artists.forEach(artist => {
-            term += ' ' + artist.name;
-          });
-          this.input.value = term;
-          this.doSearch(term);
+          if (!json.error) {
+            term = 'v ' + json.name;
+            json.artists.forEach(artist => {
+              term += ' ' + artist.name;
+            });
+            this.input.value = term;
+            this.doSearch(term);
+          } else {
+            this.input.value = '';
+          }
         });
       } else if (term.startsWith('http') || term.startsWith("rtmp") || term.startsWith("magnet")) {
         this.submit.disabled = false;
