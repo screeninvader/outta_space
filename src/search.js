@@ -36,9 +36,9 @@ var searchProviders = {
       , 'format': 'json'
       , 'q': term
       }).then((json) => {
-        return { 
+        return {
           items: _.map(json.results, (entry) => {
-            return { 
+            return {
               title: entry.title
             , url: entry.magnetlink ? entry.magnetlink : entry.url
             , thumbnail: entry.thumbnail
@@ -47,7 +47,7 @@ var searchProviders = {
           })
         };
       });
-    } 
+    }
   }
 };
 
@@ -67,9 +67,39 @@ class Search {
       }
     });
 
+    // drag'n'drop
+    var lastTarget = null;
+    document.addEventListener("dragenter", function(e) {
+      lastTarget = e.target;
+      document.querySelector(".dropzone").style.display = "";
+    }, false);
+
+    document.addEventListener("dragleave", function(e) {
+      if(e.target === lastTarget) {
+        document.querySelector(".dropzone").style.display = "none";
+      }
+    }, false);
+
+    document.addEventListener("dragover", function(e) {
+      // prevent default to allow drop
+      e.preventDefault();
+    }, false);
+
+    document.addEventListener("drop", function(e) {
+      e.preventDefault();
+      var searchInput = document.querySelector('#search-url');
+      var data = e.dataTransfer.getData("text");
+
+      document.querySelector(".dropzone").style.display = "none";
+      searchInput.blur();
+      searchInput.value = data;
+      searchInput.focus();
+      console.log(data);
+    }, false);
+
     this.doSearch = _.debounce(this.doSearchDebounced.bind(this), config.searchDebounceWait);
   }
-  
+
   toggleFocus(provider) {
     var searchInput = document.querySelector('#search-url')
       , activeEle   = document.activeElement
@@ -86,7 +116,7 @@ class Search {
     state = state || {};
     return _.template(`
       <form>
-        <input id="search-url" 
+        <input id="search-url"
                type="text"
                placeholder="Post something!">
         <input id="search-submit" type="submit" value="Go!" disabled>
@@ -115,7 +145,7 @@ class Search {
       </div>
     `)(_.extend(state, helpers));
   }
-  
+
   providersTemplate(state) {
     state = state || {};
     return _.template(`
