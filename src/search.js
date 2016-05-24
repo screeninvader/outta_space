@@ -87,7 +87,7 @@ class Search {
       var data = ev.dataTransfer.getData('text');
       document.querySelector('.dropzone').style.display = 'none';
       searchInput.value = data;
-      searchInput.dispatchEvent(new InputEvent('input'));
+      searchInput.dispatchEvent(new Event('input'));
     });
 
     this.doSearch = _.debounce(this.doSearchDebounced.bind(this), config.searchDebounceWait);
