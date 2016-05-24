@@ -68,34 +68,27 @@ class Search {
     });
 
     // drag'n'drop
-    var lastTarget = null;
-    document.addEventListener("dragenter", function(e) {
-      lastTarget = e.target;
-      document.querySelector(".dropzone").style.display = "";
-    }, false);
+    document.addEventListener('dragenter', ev => {
+      document.querySelector('.dropzone').style.display = '';
+      this.emptyResults();
+    });
+    document.addEventListener('dragend', ev => {
+      document.querySelector('.dropzone').style.display = 'none';
+    });
 
-    document.addEventListener("dragleave", function(e) {
-      if(e.target === lastTarget) {
-        document.querySelector(".dropzone").style.display = "none";
-      }
-    }, false);
-
-    document.addEventListener("dragover", function(e) {
+    document.querySelector('.dropzone').addEventListener('dragover', ev => {
       // prevent default to allow drop
-      e.preventDefault();
-    }, false);
+      ev.preventDefault();
+    });
 
-    document.addEventListener("drop", function(e) {
-      e.preventDefault();
+    document.querySelector('.dropzone').addEventListener('drop', ev => {
+      ev.preventDefault();
       var searchInput = document.querySelector('#search-url');
-      var data = e.dataTransfer.getData("text");
-
-      document.querySelector(".dropzone").style.display = "none";
-      searchInput.blur();
+      var data = ev.dataTransfer.getData('text');
+      document.querySelector('.dropzone').style.display = 'none';
       searchInput.value = data;
-      searchInput.focus();
-      console.log(data);
-    }, false);
+      searchInput.dispatchEvent(new InputEvent('input'));
+    });
 
     this.doSearch = _.debounce(this.doSearchDebounced.bind(this), config.searchDebounceWait);
   }
