@@ -86,6 +86,19 @@ header {
 	 	transform: scaleY(-1);
 	 }
 
+  ul .active .item::before {
+    content: '▶ ';
+  }
+  ul .active + li .item::before {
+    content: 'next';
+    font-size: .7em;
+    background-color: @foreground;
+    color: @background;
+    border-radius: 2px;
+    padding: 2px 3px;
+    margin-right: 8px;
+  }
+
   ul li {
     div {
       width: 100%;
