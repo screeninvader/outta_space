@@ -8,12 +8,7 @@ import Controls from './controls';
 import Search from './search';
 import Modes from './modes';
 import Notify from './notify';
-import Peerflix from './peerflix';
 
-function peerflixReload(peerflix) {
-    peerflix.render();
-    setTimeout(function(){ peerflixReload(peerflix); }, 1000);
-}
 // we seem to need DOMContentLoaded here, because script tags,
 // including our mustache templates aren't necessarily loaded
 // on document.load().
@@ -23,7 +18,6 @@ document.addEventListener('DOMContentLoaded', ev => {
     , search = new Search('#search')
     , browser = new Browser('#browser')
     , modes = new Modes('#modes')
-    , peerflix = new Peerflix('#peerflix')
     ;
 
   api.onError((error) => {
@@ -36,9 +30,6 @@ document.addEventListener('DOMContentLoaded', ev => {
   let renderOnce = _.once(() => {
     search.render();
   });
-
-  //peerflix doesn't use the janosh state at all. instead it does its own polling.
-  peerflixReload(peerflix);
 
   api.onReceive(_.debounce((state) => {
     renderOnce();
