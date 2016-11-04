@@ -36,9 +36,9 @@ var searchProviders = {
       , 'format': 'json'
       , 'q': term
       }).then((json) => {
-        return { 
+        return {
           items: _.map(json.results, (entry) => {
-            return { 
+            return {
               title: entry.title
             , url: entry.magnetlink ? entry.magnetlink : entry.url
             , thumbnail: entry.thumbnail
@@ -47,7 +47,7 @@ var searchProviders = {
           })
         };
       });
-    } 
+    }
   }
 };
 
@@ -69,7 +69,7 @@ class Search {
 
     this.doSearch = _.debounce(this.doSearchDebounced.bind(this), config.searchDebounceWait);
   }
-  
+
   toggleFocus(provider) {
     var searchInput = document.querySelector('#search-url')
       , activeEle   = document.activeElement
@@ -86,7 +86,7 @@ class Search {
     state = state || {};
     return _.template(`
       <form>
-        <input id="search-url" 
+        <input id="search-url"
                type="text"
                placeholder="Post something!">
         <input id="search-submit" type="submit" value="Go!" disabled>
@@ -115,7 +115,7 @@ class Search {
       </div>
     `)(_.extend(state, helpers));
   }
-  
+
   providersTemplate(state) {
     state = state || {};
     return _.template(`

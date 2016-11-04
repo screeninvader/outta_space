@@ -82,12 +82,28 @@ header {
       width: 0%;
     }
   }
+	 ul {
+	 	transform: scaleY(-1);
+	 }
+
+  ul .active .item::before {
+    content: '▶ ';
+  }
+  ul .active + li .item::before {
+    content: 'next';
+    font-size: .7em;
+    background-color: @foreground;
+    color: @background;
+    border-radius: 2px;
+    padding: 2px 3px;
+    margin-right: 8px;
+  }
 
   ul li {
     div {
       width: 100%;
       display: inline-block;
-  
+
       .item {
         float: left;
       }
@@ -111,6 +127,7 @@ header {
         margin: 0;
       }
     }
+    transform: scaleY(-1);
   }
 }
 
@@ -151,7 +168,7 @@ header {
     cursor: "pointer";
   }
 
-  
+
   ul {
     height: 400px;
     background-color: @background;
@@ -170,7 +187,7 @@ header {
     }
   }
 
-  
+
 }
 
 #controls {
@@ -184,8 +201,8 @@ header {
   }
   a {
     text-decoration: none;
-    &:hover { 
-      color: @highlight; 
+    &:hover {
+      color: @highlight;
     }
 
     &:last-child {
@@ -198,7 +215,7 @@ header {
 
   #progress {
     width: 100%;
-    height: 15px;
+    height: 10px;
     background-color: #000;
     color: #0f0;
     border-radius: 2px;
@@ -297,7 +314,7 @@ ul {
 
   li {
     border-bottom: 0.1em dashed  @border;
-    &:last-of-type { border-bottom: none; }
+    &:first-of-type { border-bottom: none; }
 
     a {
       display: block;
@@ -403,4 +420,3 @@ input[type=range] {
     }
   }
 }
-

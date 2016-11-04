@@ -40,10 +40,9 @@ class Controls {
 
     var totalTimeSeconds  = (h * 60 * 60) + (m * 60) + s;
 
-    var onePromille = totalTimeSeconds / 1000;
-    var progress = (currentTimeSeconds / onePromille).toString().split(".")[0];
     var progressElem = document.getElementById("progress");
-    progressElem.value = progress;
+    progressElem.max = totalTimeSeconds
+    progressElem.value = currentTimeSeconds;
   } 
 
   render(state) {
@@ -66,6 +65,7 @@ class Controls {
 
     bindEvent(this, 'a.action', 'click', this.clickHandler);
     bindEvent(this, '#volume', 'change', this.volumeHandler);
+    bindEvent(this, '#progress', 'click', this.progressHandler);
   }
 
   clickHandler(ev) {
@@ -74,6 +74,14 @@ class Controls {
 
   volumeHandler(ev) {
     api.setVolume(ev.target.value);
+  }
+
+  progressHandler(ev) {
+    var x = ev.pageX - ev.target.offsetLeft, // or e.offsetX (less support, though)
+    y = ev.pageY - ev.target.offsetTop,  // or e.offsetY
+    clickedValue = (x * ev.target.max / ev.target.offsetWidth).toString().split(".")[0];
+    api.player.seek(clickedValue);
+    alert(clickedValue);
   }
 }
 
