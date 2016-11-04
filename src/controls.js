@@ -2,6 +2,19 @@ import _ from 'underscore';
 import {bindEvent, helpers} from './utils';
 import api from './api';
 
+var cumulativeOffset = function(element) {
+    var top = 0, left = 0;
+    do {
+        top += element.offsetTop  || 0;
+        left += element.offsetLeft || 0;
+        element = element.offsetParent;
+    } while(element);
+
+    return {
+        top: top,
+        left: left
+    };
+};
 
 class Controls {
   constructor(selector) {
@@ -18,10 +31,13 @@ class Controls {
     
     return _.template(`
       <% _.each(actions, function(action) { %>
-        <a href="#" id="<%= action %>" class="icon action <%= action %>" title="<%= action %>"></a>
+        <a href="#" id="<%= action %>" class="icon action <%= action %>" title="r<%= action %>"></a>
       <% }); %>
       <input id="volume" type="range" min="0" max="100" value="<%= sound.volume %>" />
-      <progress id="progress" min="0" max="1000" />
+      <div id="progress">
+        <progress id="progress-bar" min="0" max="1000"></progress><span id="progress-text"></span>
+      </div>
+      <br/>
     `)(_.extend(state, helpers));
   }
 
@@ -40,9 +56,10 @@ class Controls {
 
     var totalTimeSeconds  = (h * 60 * 60) + (m * 60) + s;
 
-    var progressElem = document.getElementById("progress");
+    var progressElem = document.getElementById("progress-bar");
     progressElem.max = totalTimeSeconds
     progressElem.value = currentTimeSeconds;
+    document.getElementById("progress-text").innerHTML= "&nbsp;" + currentAndTotalTime[0].substring(1,currentAndTotalTime[0].length - 1) + "/" + currentAndTotalTime[1].substring(1,currentAndTotalTime[0].length - 1);
   } 
 
   render(state) {
@@ -65,7 +82,7 @@ class Controls {
 
     bindEvent(this, 'a.action', 'click', this.clickHandler);
     bindEvent(this, '#volume', 'change', this.volumeHandler);
-    bindEvent(this, '#progress', 'click', this.progressHandler);
+    bindEvent(this, '#progress-bar', 'click', this.progressHandler);
   }
 
   clickHandler(ev) {
@@ -77,11 +94,12 @@ class Controls {
   }
 
   progressHandler(ev) {
-    var x = ev.pageX - ev.target.offsetLeft, // or e.offsetX (less support, though)
-    y = ev.pageY - ev.target.offsetTop,  // or e.offsetY
-    clickedValue = (x * ev.target.max / ev.target.offsetWidth).toString().split(".")[0];
+    console.log(ev.target.x);
+    var pos = cumulativeOffset(ev.target);
+    var x = ev.pageX - pos.left - 271; // or e.offsetX (less support, though)
+    var y = ev.pageY - pos.top;  // or e.offsetY
+    var clickedValue = x * ev.target.max / ev.target.offsetWidth;
     api.player.seek(clickedValue);
-    alert(clickedValue);
   }
 }
 
