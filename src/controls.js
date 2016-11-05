@@ -2,20 +2,6 @@ import _ from 'underscore';
 import {bindEvent, helpers} from './utils';
 import api from './api';
 
-var cumulativeOffset = function(element) {
-    var top = 0, left = 0;
-    do {
-        top += element.offsetTop  || 0;
-        left += element.offsetLeft || 0;
-        element = element.offsetParent;
-    } while(element);
-
-    return {
-        top: top,
-        left: left
-    };
-};
-
 class Controls {
   constructor(selector) {
     this.el = document.querySelector(selector);
@@ -28,7 +14,6 @@ class Controls {
   template(state) {
     state = state || {};
     state.actions = this.actions;
-    
     return _.template(`
       <% _.each(actions, function(action) { %>
         <a href="#" id="<%= action %>" class="icon action <%= action %>" title="r<%= action %>"></a>
@@ -41,14 +26,14 @@ class Controls {
   }
 
   timePosChanged(msg) {
-    var currentAndTotalTime = msg.substring(1, msg.length - 1).split(",");
-    var tokens = currentAndTotalTime[0].substring(1,currentAndTotalTime[0].length - 1).split(":");
+    var currentAndTotalTime = JSON.parse(msg);
+    var tokens = currentAndTotalTime[0].split(":");
     var h = parseInt(tokens[0],10);
     var m = parseInt(tokens[1],10);
     var s = parseInt(tokens[2],10);
     var currentTimeSeconds  = (h * 60 * 60) + (m * 60) + s;
 
-    tokens = currentAndTotalTime[1].substring(1,currentAndTotalTime[0].length - 1).split(":");
+    tokens = currentAndTotalTime[1].split(":");
     h = parseInt(tokens[0],10);
     m = parseInt(tokens[1],10);
     s = parseInt(tokens[2],10);
@@ -58,7 +43,8 @@ class Controls {
     var progressElem = document.getElementById("progress-bar");
     progressElem.max = totalTimeSeconds;
     progressElem.value = currentTimeSeconds;
-    document.getElementById("progress-text").innerHTML= "&nbsp;" + currentAndTotalTime[0].substring(1,currentAndTotalTime[0].length - 1) + "/" + currentAndTotalTime[1].substring(1,currentAndTotalTime[0].length - 1);
+    var progressHtml = "&nbsp;" + currentAndTotalTime[0] + "/" + currentAndTotalTime[1];
+    document.getElementById("progress-text").innerHTML= progressHtml;
   } 
 
   render(state) {
@@ -96,7 +82,7 @@ class Controls {
     console.log(ev.target.x);
     var bound = ev.target.getBoundingClientRect();
     var x = ev.pageX - bound.left; // or e.offsetX (less support, though)
-    var clickedValue = (x * ev.target.max / bound.width).toString().split(".")[0];
+    var clickedValue = parseFloat(x * ev.target.max / bound.width);
     api.player.seek(clickedValue);
   }
 }
