@@ -33,11 +33,10 @@ class Controls {
       <% _.each(actions, function(action) { %>
         <a href="#" id="<%= action %>" class="icon action <%= action %>" title="r<%= action %>"></a>
       <% }); %>
-      <input id="volume" type="range" min="0" max="100" value="<%= sound.volume %>" />
+      <input id="volume" type="range" min="0" max="100" value="<%= sound.volume %>"></input>
       <div id="progress">
         <progress id="progress-bar" min="0" max="1000"></progress><span id="progress-text"></span>
       </div>
-      <br/>
     `)(_.extend(state, helpers));
   }
 
@@ -57,7 +56,7 @@ class Controls {
     var totalTimeSeconds  = (h * 60 * 60) + (m * 60) + s;
 
     var progressElem = document.getElementById("progress-bar");
-    progressElem.max = totalTimeSeconds
+    progressElem.max = totalTimeSeconds;
     progressElem.value = currentTimeSeconds;
     document.getElementById("progress-text").innerHTML= "&nbsp;" + currentAndTotalTime[0].substring(1,currentAndTotalTime[0].length - 1) + "/" + currentAndTotalTime[1].substring(1,currentAndTotalTime[0].length - 1);
   } 
@@ -95,10 +94,9 @@ class Controls {
 
   progressHandler(ev) {
     console.log(ev.target.x);
-    var pos = cumulativeOffset(ev.target);
-    var x = ev.pageX - pos.left - 271; // or e.offsetX (less support, though)
-    var y = ev.pageY - pos.top;  // or e.offsetY
-    var clickedValue = x * ev.target.max / ev.target.offsetWidth;
+    var bound = ev.target.getBoundingClientRect();
+    var x = ev.pageX - bound.left; // or e.offsetX (less support, though)
+    var clickedValue = (x * ev.target.max / bound.width).toString().split(".")[0];
     api.player.seek(clickedValue);
   }
 }
