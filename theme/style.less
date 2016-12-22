@@ -82,9 +82,10 @@ header {
       width: 0%;
     }
   }
-	 ul {
-	 	transform: scaleY(-1);
-	 }
+
+  ul {
+  	transform: scaleY(-1);
+  }
 
   ul .active .item::before {
     content: '▶ ';
@@ -100,6 +101,8 @@ header {
   }
 
   ul li {
+    &:first-of-type { border-bottom: none; }
+    &:last-of-type { border-bottom: inherit; }
     div {
       width: 100%;
       display: inline-block;
@@ -339,7 +342,7 @@ ul {
 
   li {
     border-bottom: 0.1em dashed  @border;
-    &:first-of-type { border-bottom: none; }
+    &:last-of-type { border-bottom: none; }
 
     a {
       display: block;
