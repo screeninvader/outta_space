@@ -124,10 +124,9 @@ class Search {
   providersTemplate(state) {
     state = state || {};
     return _.template(`
-      <p>Enter an URL directly or search interactively by entering a search
-       providers name or alias followed by your search terms.
-      "<code>v Metalab</code>", for example, searches for
-      "Metalab". The following providers are available:</p>
+      <p>Enter a URL directly or search for content on the internet.
+      You can optionally use one of the prefixes below to search for
+      specific content types.</p>
       <ul>
         <% _.each(items, function(item) { %>
           <li>
