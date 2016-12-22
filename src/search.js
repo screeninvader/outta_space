@@ -105,10 +105,15 @@ class Search {
         <ul>
           <% _.each(items, function(item) { %>
             <li data-link="<%= item.url %>">
-              <a class ="item" href="#">
-                <%= item.title %>
-              </a>
-             <div><img width="140px" src="<%= item.thumbnail %>" alt="thumbnail"><%= item.content %></div>
+              <img src="<%= item.thumbnail %>" alt="thumbnail">
+              <div>
+                <a class ="item" href="#">
+                  <%= item.title %>
+                </a>
+                <p>
+                  <%= item.content %>
+                </p>
+              </div>
             </li>
           <% }); %>
         </ul>
