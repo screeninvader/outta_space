@@ -212,6 +212,15 @@ class Search {
       this.renderProviders(matchingProviders);
     }
 
+    if (matchingProviders.length === 0 && queryWords.length > 0) {
+      terms = queryWords.join(' ');
+      console.log('terms', terms);
+      searchProviders
+        .video
+        .search(terms)
+        .then(this.renderResults.bind(this));
+    }
+
     if (matchingProviders.length === 1 && terms.length > 0) {
       console.log('terms', terms);
       _.first(matchingProviders)
