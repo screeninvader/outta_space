@@ -167,8 +167,8 @@ class Search {
     let term = ev.target.value;
     this.submit.disabled = true;
     if (term.length > 0) {
-      if (term.startsWith('https://open.spotify.com') && term.indexOf('track') !== -1) {
-        fetchJSON('https://api.spotify.com/v1/tracks/' + term.split('/track/')[1]).then((json) => {
+      if (term.startsWith('spotify:track:') || term.startsWith('https://open.spotify.com/track/')) {
+        fetchJSON('https://api.spotify.com/v1/tracks/' + term.split(/([:\/])track\1/)[2]).then((json) => {
           term = 'v ' + json.name;
           json.artists.forEach(artist => {
             term += ' ' + artist.name;
