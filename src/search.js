@@ -8,11 +8,11 @@ var searchProviders = {
   video: {
     name: 'Video'
   , alias: 'v'
-  , search: (term) => {
+  , search: (terms) => {
       return fetchJSON('http://' + window.location.host + '/searx/', {
         'categories': 'videos'
       , 'format': 'json'
-      , 'q': term
+      , 'q': terms
       }).then((json) => {
         return {
           items: _.map(json.results, (entry) => {
@@ -30,11 +30,11 @@ var searchProviders = {
 , music: {
     name: 'Music'
   , alias: 'm'
-  , search: (term) => {
+  , search: (terms) => {
       return fetchJSON('http://' + window.location.host + '/searx/', {
         'categories': 'music'
       , 'format': 'json'
-      , 'q': term
+      , 'q': terms
       }).then((json) => {
         return {
           items: _.map(json.results, (entry) => {
