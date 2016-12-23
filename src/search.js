@@ -213,12 +213,10 @@ class Search {
     }
 
     if (matchingProviders.length === 0 && queryWords.length > 0) {
+      matchingProviders = [searchProviders.video];
+      this.renderProviders(matchingProviders);
+      providerAlias = 'v';
       terms = queryWords.join(' ');
-      console.log('terms', terms);
-      searchProviders
-        .video
-        .search(terms)
-        .then(this.renderResults.bind(this));
     }
 
     if (matchingProviders.length === 1 && terms.length > 0) {
