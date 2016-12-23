@@ -107,7 +107,7 @@ class Search {
             <li data-link="<%= item.url %>">
               <img src="<%= item.thumbnail %>" alt="thumbnail">
               <div>
-                <a class ="item" href="#">
+                <a class="item" href="#">
                   <%= item.title %>
                 </a>
                 <p>
@@ -197,8 +197,9 @@ class Search {
   }
 
   clickHandler(ev) {
-    // ev.target is the <a> element, parentNode the <li> element.
-    api.showUrl(ev.target.parentNode.getAttribute('data-link'));
+    // ev.target is the <a> element, parentNode the <div> element
+    // and the parentNode of that is the <li> element.
+    api.showUrl(ev.target.parentNode.parentNode.getAttribute('data-link'));
   }
 
   doSearchDebounced(query) {
