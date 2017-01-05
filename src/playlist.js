@@ -17,8 +17,8 @@ class Playlist {
               class="<%= isActive(current, index) %>
                      <%= oddEven(current) %>">
             <div>
+              <span class="grippy">☰</span>
               <a class="item" href="#<%= current %>">
-                <span class="grippy">☰</span>
                 <%= item.title %>
               </a>
               <a class="expand">...</a>
