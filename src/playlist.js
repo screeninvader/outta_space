@@ -21,8 +21,8 @@ class Playlist {
                 <span class="grippy">☰</span>
                 <%= item.title %>
               </a>
-              <a class="remove">X</a>
               <a class="expand">...</a>
+              <a class="remove">X</a>
             </div>
             <div class="expanded">
               <a target="_blank" href="<%= item.source %>">Website</a>

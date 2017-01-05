@@ -82,9 +82,10 @@ header {
       width: 0%;
     }
   }
-	 ul {
-	 	transform: scaleY(-1);
-	 }
+
+  ul {
+  	transform: scaleY(-1);
+  }
 
   ul span.grippy {
     cursor: move;
@@ -109,18 +110,19 @@ header {
   ul li {
     div {
       width: 100%;
-      display: inline-block;
+      display: flex;
 
       .item {
-        float: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .expand {
-        float: right;
+        margin-left: auto;
       }
 
       .remove {
-        float: right;
       }
 
     }
