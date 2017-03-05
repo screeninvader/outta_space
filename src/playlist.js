@@ -17,9 +17,10 @@ class Playlist {
               class="<%= isActive(current, index) %>
                      <%= oddEven(current) %>">
             <div>
+              <span class="grippy">☰</span>
               <a class="item" href="#<%= current %>"><%= item.title %></a>
-              <a class="remove">X</a>
               <a class="expand">...</a>
+              <a class="remove">X</a>
             </div>
             <div class="expanded">
               <a target="_blank" href="<%= item.source %>">Website</a>
@@ -46,7 +47,7 @@ class Playlist {
     bindEvent(this, '#export', 'click', this.exportHandler);
     var sort = Sortable.create(document.querySelector("#playlist ul"), {
       animation: 0, // ms, animation speed moving items when sorting, `0` — without animation
-      handle: "ul", // Restricts sort start click/touch to the specified element
+      handle: ".grippy", // Restricts sort start click/touch to the specified element
       draggable: "li", // Specifies which items inside the element should be sortable
       onUpdate: function (evt){
         api.playlist.shift(evt.oldIndex, evt.newIndex);
