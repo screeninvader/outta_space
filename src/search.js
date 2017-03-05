@@ -105,10 +105,15 @@ class Search {
         <ul>
           <% _.each(items, function(item) { %>
             <li data-link="<%= item.url %>">
-              <a class ="item" href="#">
-                <%= item.title %>
-              </a>
-             <div><img width="140px" src="<%= item.thumbnail %>" alt="thumbnail"><%= item.content %></div>
+              <img src="<%= item.thumbnail %>" alt="thumbnail">
+              <div>
+                <a class="item" href="#">
+                  <%= item.title %>
+                </a>
+                <p>
+                  <%= item.content %>
+                </p>
+              </div>
             </li>
           <% }); %>
         </ul>
@@ -119,10 +124,10 @@ class Search {
   providersTemplate(state) {
     state = state || {};
     return _.template(`
-      <p>Enter an URL directly or search interactively by entering a search
-       providers name or alias followed by your search terms.
-      "<code>v Metalab</code>", for example, searches for
-      "Metalab". The following providers are available:</p>
+      <p>Enter a URL directly or search for content on the internet.
+      <br>
+      You can optionally use one of the prefixes below to search for
+      specific content types.</p>
       <ul>
         <% _.each(items, function(item) { %>
           <li>
@@ -201,8 +206,9 @@ class Search {
   }
 
   clickHandler(ev) {
-    // ev.target is the <a> element, parentNode the <li> element.
-    api.showUrl(ev.target.parentNode.getAttribute('data-link'));
+    // ev.target is the <a> element, parentNode the <div> element
+    // and the parentNode of that is the <li> element.
+    api.showUrl(ev.target.parentNode.parentNode.getAttribute('data-link'));
   }
 
   doSearchDebounced(query) {
