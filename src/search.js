@@ -207,7 +207,7 @@ class Search {
 
   doSearchDebounced(query) {
     let queryWords = query.split(' ')
-      , providerAlias = _.first(queryWords)
+      , providerAlias = _.first(queryWords).toLowerCase()
       , terms = _.rest(queryWords).join(' ')
     ;
     console.log('alias, terms', providerAlias, terms);
@@ -219,6 +219,13 @@ class Search {
 
     if (terms.length === 0) {
       this.renderProviders(matchingProviders);
+    }
+
+    if (matchingProviders.length === 0 && queryWords.length > 0) {
+      matchingProviders = [searchProviders.video];
+      this.renderProviders(matchingProviders);
+      providerAlias = 'v';
+      terms = queryWords.join(' ');
     }
 
     if (matchingProviders.length === 1 && terms.length > 0) {
