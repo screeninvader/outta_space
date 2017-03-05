@@ -82,10 +82,19 @@ header {
       width: 0%;
     }
   }
-	 ul {
-	 	transform: scaleY(-1);
-	 }
 
+  ul {
+  	transform: scaleY(-1);
+  }
+
+  ul span.grippy {
+    cursor: move;
+    float: left;
+    padding: 0.1em 0.5em;
+  }
+  ul .active span.grippy {
+    color: @background;
+  }
   ul .active .item::before {
     content: '▶ ';
   }
@@ -96,24 +105,24 @@ header {
     color: @background;
     border-radius: 2px;
     padding: 2px 3px;
-    margin-right: 8px;
   }
 
   ul li {
     div {
       width: 100%;
-      display: inline-block;
+      display: flex;
 
       .item {
-        float: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .expand {
-        float: right;
+        margin-left: auto;
       }
 
       .remove {
-        float: right;
       }
 
     }
@@ -211,14 +220,14 @@ header {
   }
   #volume {
     display: inline-block;
-    font-size: 0; 
+    font-size: 0;
   }
 
   #progress {
     display: flex;
     width: 100%;
   }
-  
+
  #progress-bar {
     margin-top: 5px;
     height: 10px;
@@ -421,7 +430,7 @@ input[type=range] {
       }
     }
     ul li a {
-      padding: 0 0.5em;
+      padding: 0.1em 0.5em 0.1em 0em;
     }
   }
 }
