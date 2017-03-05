@@ -167,7 +167,16 @@ class Search {
     let term = ev.target.value;
     this.submit.disabled = true;
     if (term.length > 0) {
-      if (term.startsWith('http') || term.startsWith("rtmp") || term.startsWith("magnet")) {
+      if (term.startsWith('spotify:track:') || term.startsWith('https://open.spotify.com/track/')) {
+        fetchJSON('https://api.spotify.com/v1/tracks/' + term.split(/([:\/])track\1/)[2]).then((json) => {
+          term = 'v ' + json.name;
+          json.artists.forEach(artist => {
+            term += ' ' + artist.name;
+          });
+          this.input.value = term;
+          this.doSearch(term);
+        });
+      } else if (term.startsWith('http') || term.startsWith("rtmp") || term.startsWith("magnet")) {
         this.submit.disabled = false;
       } else {
         this.doSearch(term);
