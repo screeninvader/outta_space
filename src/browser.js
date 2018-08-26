@@ -6,7 +6,7 @@ class Browser {
   constructor(selector) {
     this.el = document.querySelector(selector);
     this.actions = [
-      'close', 'zoomIn',  'zoomOut', 'pageDown', 'pageUp'
+      'close', 'zoomIn',  'zoomOut', 'scrollDown', 'scrollUp'
     ];
   }
 
