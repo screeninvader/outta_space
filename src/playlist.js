@@ -30,6 +30,7 @@ class Playlist {
         <% }); %>
       </ul>
       <div class="bar">
+        <a href="" id="getlog" alt="Download system log files" download="logs.zip" >Download log files</a>
         <span id="clear">clear playlist</span>
         <a href="" id="export" alt="save the playlist to txt" download="playlist.txt" >export playlist</a>
       </div>
@@ -45,6 +46,8 @@ class Playlist {
     bindEvent(this, '.expand', 'click', this.expandHandler);
     bindEvent(this, '#clear', 'click', this.clearHandler);
     bindEvent(this, '#export', 'click', this.exportHandler);
+    bindEvent(this, '#getlog', 'click', this.getLogHandler);
+
     var sort = Sortable.create(document.querySelector("#playlist ul"), {
       animation: 0, // ms, animation speed moving items when sorting, `0` — without animation
       handle: ".grippy", // Restricts sort start click/touch to the specified element
@@ -74,6 +77,10 @@ class Playlist {
   exportHandler(ev) {
     ev.target.href = 'data:text/plain;charset=utf-8,'
           + encodeURIComponent(JSON.stringify(api.state.playlist.items));
+  }
+
+  getLogHandler(ev) {
+    ev.target.href = '/cgi-bin/getlogs'
   }
 
 }
