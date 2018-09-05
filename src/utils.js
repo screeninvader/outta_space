@@ -15,7 +15,7 @@ function fetchJSON(url, parameters) {
 
 export var helpers = {
   isActive(current, active) {
-    return current === parseInt(active) ? 'active' : '';
+    return current === active ? 'active' : '';
   }
 , oddEven(index) {
     return index % 2 ? 'odd' : 'even';
