@@ -52,7 +52,7 @@ class Controls {
       , pauseIndex =  _.indexOf(this.actions, 'pause');
 
     var index = playIndex == -1 ? pauseIndex : playIndex;
-    if (state.player.paused == "true" ) {
+    if (state.player.paused == true ) {
       this.actions[index] = 'play';
     } else {
       this.actions[index] = 'pause';
@@ -61,7 +61,7 @@ class Controls {
     var temp = this.template(state);
     this.el.innerHTML = temp;
 
-    if(state.player.paused == "true") {
+    if(state.player.paused == true) {
       this.el.querySelector('#play').classList.add("blink");
     }
 

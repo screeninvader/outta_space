@@ -23,7 +23,7 @@ class Browser {
   }
 
   render(state) {
-    if(state.browser.active == 'true' || state.image.active == 'true' || state.animation.active == 'true') {
+    if(state.browser.active == true || state.image.active == true || state.animation.active == true) {
       var temp = this.template(state);
       this.el.innerHTML = temp;
       this.el.style.display = '';
