@@ -4,7 +4,7 @@
   "description": "a web frontend for ScreenInvader",
   "dependencies": {
     "humane-js": "wavded/humane-js",
-    "screeninvader.js": "screeninvader/screeninvader.js",
+    "screeninvader.js": "screeninvader/screeninvader.js#old",
     "sortablejs": "1.1.1",
     "underscore": "1.8.2"
   },
